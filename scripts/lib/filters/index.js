@@ -40,4 +40,43 @@ const SVG = {
 <path fill="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z" undefined="1"></path>
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M17 8.5C15.23 8.97 14.07 10.84 14.01 13.27C14 13.33 14 13.4 14 13.47V13.5"></path>
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M9 8.5C7.23 8.97 6.07 10.84 6.01 13.27C6 13.33 6 13.4 6 13.47V13.5"></path>
-<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimi
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M15.97 11.5H16.04C17.12 11.5 18 12.38 18 13.47V13.53C18 14.62 17.12 15.5 16.03 15.5H15.96C14.88 15.5 14 14.62 14 13.53V13.46C14 12.38 14.88 11.5 15.97 11.5Z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" stroke="" d="M7.97 11.5H8.04C9.12 11.5 10 12.38 10 13.47V13.53C10 14.62 9.12 15.5 8.03 15.5H7.97C6.88 15.5 6 14.62 6 13.53V13.46C6 12.38 6.88 11.5 7.97 11.5Z"></path>
+</svg>
+`
+}
+
+module.exports = function (hexo) {
+  const themeConfig = Object.assign(
+    hexo.theme.config || {},
+    hexo.config.theme_config
+  )
+
+  const lang = themeConfig.site.language
+
+  hexo.extend.filter.register('after_post_render', function (data) {
+    /** Filter and render Custom Quote Blocks */
+    data.content = data.content.replace(
+      QUOTE_REGEX,
+      (matchedQuote, p1, p2, p3) => {
+        let context,
+          template = matchedQuote
+        if (p1 && QUOTE_TYPES.indexOf(p1) !== -1) {
+          context = {
+            type: p1,
+            title: p2 ? p2 : QUOTE_LANG[lang][p1],
+            content: TAG_REGEX.test(p3) ? p3 : `<p>${p3}</p>`
+          }
+
+          if (context.type === 'details') {
+            template = `<details class="custom-details">\n<summary>${context.title}</summary>\n${context.content}\n</details>`
+          } else {
+            template = `<div class="custom-quote ${
+              context.type
+            }">\n<span class="custom-quote-svg">${
+              SVG[context.type]
+            }</span>\n<p class="custom-quote-title">${context.title}</p>\n${
+              context.content
+            }\n</div>`
+          }
+        
