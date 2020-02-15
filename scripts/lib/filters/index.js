@@ -79,4 +79,15 @@ module.exports = function (hexo) {
               context.content
             }\n</div>`
           }
-        
+        }
+        return template
+      }
+    )
+    /** Filter and render BlockQuote */
+    data.content = data.content.replace(
+      BLOCKQUOTE_REGEX,
+      `<blockquote><span class="custom-blockquote-svg">${SVG['blockquote']}</span>$1</blockquote>`
+    )
+    return data
+  })
+}
