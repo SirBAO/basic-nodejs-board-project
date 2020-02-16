@@ -55,4 +55,19 @@ class CategoryGenerator {
             name: item.name,
             slug: item.slug,
             count: item.posts.length,
-            path: 'api/categories
+            path: 'api/categories/' + item.slug + '.json',
+            postlist: item.posts.map((post) => {
+              return postListMapper(post, configs)
+            })
+          }
+        })
+      )
+    }, [])
+  }
+
+  count() {
+    return this.data.length
+  }
+}
+
+module.exports = CategoryGenerator
