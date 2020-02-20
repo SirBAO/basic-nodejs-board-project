@@ -58,4 +58,83 @@ function authorAttributes(author) {
     avatar: author.avatar || '',
     link: author.link || '',
     description: author.description || '',
-    socials: author.socials ? social
+    socials: author.socials ? socialMapper(author.socials) : {}
+  }
+}
+
+function socialMapper(socials) {
+  return {
+    github: socials.github || '',
+    twitter: socials.twitter || '',
+    stackoverflow: socials.stackoverflow || '',
+    wechat: socials.wechat || '',
+    qq: socials.qq || '',
+    weibo: socials.weibo || '',
+    zhihu: socials.zhihu || '',
+    csdn: socials.csdn || '',
+    juejin: socials.juejin || '',
+    customs: socials.customs || {}
+  }
+}
+
+function postListMapper(post, configs) {
+  if (!post.mapped) post = postMapper(post, configs)
+  return {
+    title: post.title,
+    uid: post.uid,
+    slug: post.slug,
+    date: post.date,
+    updated: post.updated,
+    comments: post.comments,
+    path: post.path,
+    keywords: configs.keywords,
+    cover: post.cover,
+    text: post.text,
+    link: post.link,
+    photos: post.photos,
+    count_time: post.count_time,
+    categories: post.categories,
+    tags: post.tags,
+    author: post.author,
+    feature: post.feature,
+    pinned: post.pinned
+  }
+}
+
+function postCategoryMapper(post) {
+  return post.categories.map(function (cat) {
+    return {
+      name: cat.name,
+      slug: cat.slug,
+      count: cat.posts.length,
+      path: 'api/categories/' + cat.slug + '.json'
+    }
+  })
+}
+
+function postTagMapper(post) {
+  return post.tags.map(function (tag) {
+    return {
+      name: tag.name,
+      slug: tag.slug,
+      count: tag.posts.length,
+      path: 'api/tags/' + tag.slug + '.json'
+    }
+  })
+}
+
+/**
+ * Category mappers.
+ */
+
+function categoryMapper(category) {
+  const data = !category['data'] ? category : category.data
+  return {
+    name: data.name,
+    path: data.path,
+    slug: data.slug,
+    count: data.count
+  }
+}
+
+f
