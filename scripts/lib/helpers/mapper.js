@@ -211,4 +211,24 @@ function searchMapper(post) {
     content: filterHTMLCharacters(post.content),
     slug: post.slug,
     date: post.date,
-    categories_index: post.categories.r
+    categories_index: post.categories.reduce(flattenMapper, ''),
+    tags_index: post.tags.reduce(flattenMapper, ''),
+    author_index: post.author.name
+  }
+}
+
+function flattenMapper(result, data) {
+  if (result === '') return data.name
+  return result + ',' + data.name
+}
+
+module.exports = {
+  postMapper,
+  postListMapper,
+  categoryMapper,
+  categoryPageMapper,
+  tagMapper,
+  tagPageMapper,
+  pageMapper,
+  searchMapper
+}
