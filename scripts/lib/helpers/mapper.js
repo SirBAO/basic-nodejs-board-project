@@ -137,4 +137,78 @@ function categoryMapper(category) {
   }
 }
 
-f
+function categoryPageMapper(category) {
+  const data = !category['data'] ? category : category.data
+  return {
+    path: data.path,
+    data: JSON.stringify({
+      name: data.name,
+      slug: data.slug,
+      count: data.count,
+      postlist: data.postlist
+    })
+  }
+}
+
+/**
+ * Tag Mappers
+ */
+
+function tagMapper(tag) {
+  const data = !tag.data ? tag : tag.data
+  return {
+    name: data.name,
+    path: data.path,
+    slug: data.slug,
+    count: data.count
+  }
+}
+
+function tagPageMapper(tag) {
+  const data = !tag.data ? tag : tag.data
+  return {
+    path: data.path,
+    data: JSON.stringify({
+      name: data.name,
+      slug: data.slug,
+      count: data.count,
+      postlist: data.postlist
+    })
+  }
+}
+
+/**
+ * Page Mappers
+ */
+
+function pageMapper(page) {
+  // const safe_title = page.title.replace(/[^a-z0-9]/gi, '-').toLowerCase()
+  const sourceMappedPath = page.source.replace(/\.md$/, '.json')
+  const path = 'api/pages/' + sourceMappedPath
+  return {
+    path: path,
+    data: JSON.stringify({
+      title: page.title,
+      uid: generateUid('page_uid___' + page.title),
+      text: truncateHTML(page.content),
+      date: page.date,
+      updated: page.updated,
+      comments: page.comments,
+      path: path,
+      covers: page.cover || fetchCovers(page.content),
+      excerpt: page.excerpt,
+      content: page.content,
+      count_time: symbolsCountTime(page.content),
+      toc: toc(page.content)
+    })
+  }
+}
+
+function searchMapper(post) {
+  return {
+    id: post.uid,
+    title: post.title,
+    content: filterHTMLCharacters(post.content),
+    slug: post.slug,
+    date: post.date,
+    categories_index: post.categories.r
