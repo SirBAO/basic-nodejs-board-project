@@ -34,4 +34,55 @@ function getToc(str, options = {}) {
   for (let i = 0, len = data.length; i < len; i++) {
     const el = data[i]
     const { level, id, text } = el
-    const href = id ? `#${encodeURL(id)}` 
+    const href = id ? `#${encodeURL(id)}` : null
+
+    lastNumber[level - 1]++
+
+    for (let i = level; i <= 5; i++) {
+      lastNumber[i] = 0
+    }
+
+    if (firstLevel) {
+      for (let i = level; i < lastLevel; i++) {
+        result += '</li></ol>'
+      }
+
+      if (level > lastLevel) {
+        result += `<ol class="${className}-child">`
+      } else {
+        result += '</li>'
+      }
+    } else {
+      firstLevel = level
+    }
+
+    result += `<li class="${className}-item ${className}-level-${level}">`
+    if (href) {
+      result += `<a class="${className}-link" href="${href}">`
+    } else {
+      result += `<a class="${className}-link">`
+    }
+
+    if (listNumber) {
+      result += `<span class="${className}-number">`
+
+      for (let i = firstLevel - 1; i < level; i++) {
+        result += `${lastNumber[i]}.`
+      }
+
+      result += '</span> '
+    }
+
+    result += `<span class="${className}-text">${text}</span></a>`
+
+    lastLevel = level
+  }
+
+  for (let i = firstLevel - 1; i < lastLevel; i++) {
+    result += '</li></ol>'
+  }
+
+  return result
+}
+
+module.exports = getToc
