@@ -42,4 +42,30 @@ function symbolsCountTime(content, isSite) {
     return getFormatTime(minutes, suffix)
   }
 
-  var getSymbolsTotal = function (posts)
+  var getSymbolsTotal = function (posts) {
+    var symbolsResultCount = 0
+    posts.forEach(function (post) {
+      if (String(post.count_time.symbolsCount).indexOf('k') > -1) {
+        post.count_time.symbolsCount =
+          Number(String(post.count_time.symbolsCount).replace(/[k]+/g, '')) *
+          1000
+      }
+      symbolsResultCount += Number(post.count_time.symbolsCount)
+    })
+    if (symbolsResultCount > 9999) {
+      symbolsResultCount = Math.round(symbolsResultCount / 1000) + 'k' // > 9999 => 11k
+    } else if (symbolsResultCount > 999) {
+      symbolsResultCount = Math.round(symbolsResultCount / 100) / 10 + 'k' // > 999 => 1.1k
+    } // < 999 => 111
+    return symbolsResultCount
+  }
+
+  if (!isSite) {
+    return {
+      symbolsCount: getSymbolsCount(content),
+      symbolsTime: getSymbolsTime(content)
+    }
+  } else {
+    return getSymbolsTotal(content)
+  }
+}
