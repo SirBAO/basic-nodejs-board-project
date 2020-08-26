@@ -106,4 +106,59 @@ export default defineComponent({
               ? appStore.themeConfig.plugins.copy_protection.license.cn
               : appStore.themeConfig.plugins.copy_protection.license.en
 
-    
+          pagelink = `\n\n---------------------------------\n${authorPlaceholder}: ${appStore.themeConfig.site.author}\n${linkPlaceholder}: ${document.location.href}\n${licensePlaceholder}`
+          intialCopyrightScript()
+        }
+      })
+    }
+
+    const copyEventHandler = (event: any) => {
+      if (document.getSelection() instanceof Selection) {
+        if (document.getSelection()?.toString() !== '' && event.clipboardData) {
+          event.clipboardData.setData(
+            'text',
+            document.getSelection() + pagelink
+          )
+          event.preventDefault()
+        }
+      }
+    }
+
+    /** Adding copy listner */
+    const intialCopyrightScript = () => {
+      document.addEventListener('copy', copyEventHandler)
+    }
+
+    const isMobile = computed(() => {
+      return commonStore.isMobile
+    })
+
+    const resizeHanler = () => {
+      const rect = document.body.getBoundingClientRect()
+      const mobileState = rect.width - 1 < MOBILE_WITH
+      if (isMobile.value !== mobileState)
+        commonStore.changeMobileState(mobileState)
+    }
+
+    const initResizeEvent = () => {
+      resizeHanler()
+      window.addEventListener('resize', resizeHanler)
+    }
+
+    const handleOpenModal = () => {
+      searchStore.setOpenModal(true)
+    }
+
+    onBeforeMount(initialApp)
+
+    onUnmounted(() => {
+      document.removeEventListener('copy', copyEventHandler)
+      window.removeEventListener('resize', resizeHanler)
+    })
+
+    const wrapperStyle = ref({ 'min-height': '100vh' })
+
+    onMounted(() => {
+      let wrapperHeight = screen.height
+      const footerEl = document.getElementById('footer')
+      const footerHe
