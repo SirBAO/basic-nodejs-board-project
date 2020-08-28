@@ -207,4 +207,81 @@ export default defineComponent({
       cssVariables: computed(() => {
         if (appStore.theme === 'theme-dark') {
           return `
-            --text-accent: ${appS
+            --text-accent: ${appStore.themeConfig.theme.gradient.color_1};
+            --text-sub-accent: ${appStore.themeConfig.theme.gradient.color_3};
+            --main-gradient: ${appStore.themeConfig.theme.header_gradient_css};
+          `
+        }
+        return `
+          --text-accent: ${appStore.themeConfig.theme.gradient.color_3};
+          --text-sub-accent: ${appStore.themeConfig.theme.gradient.color_2};
+          --main-gradient: ${appStore.themeConfig.theme.header_gradient_css};
+        `
+      }),
+      appWrapperClass,
+      loadingBarClass,
+      handleOpenModal
+    }
+  }
+})
+</script>
+
+<style lang="scss">
+body {
+  background: var(--background-primary-alt);
+}
+
+*:focus {
+  outline: none;
+}
+
+#app {
+  @apply relative min-w-full min-h-screen h-full;
+  font-family: Rubik, Avenir, Helvetica, Arial, sans-serif;
+  .app-wrapper {
+    @apply bg-ob-deep-900 min-w-full h-full pb-12;
+    transition-property: transform, border-radius;
+    transition-duration: 350ms;
+    transition-timing-function: ease;
+    transform-origin: 0 42%;
+    .app-container {
+      color: var(--text-normal);
+      margin: 0 auto;
+    }
+  }
+
+  .header-wave {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    z-index: 1;
+  }
+
+  .App-Mobile-sidebar {
+    @apply fixed top-0 bottom-0 left-0;
+  }
+  .App-Mobile-wrapper {
+    @apply relative overflow-y-auto h-full -mr-4 pr-6 pl-4 pt-8 opacity-0;
+    transition: all 0.85s cubic-bezier(0, 1.8, 1, 1.2);
+    transform: translateY(-20%);
+    width: 280px;
+  }
+}
+
+.app-banner {
+  content: '';
+  display: block;
+  height: 600px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  clip-path: polygon(
+    100% 0,
+    0 0,
+    0 77.5%,
+    1% 77.4%,
+    2% 77.1%,
+    3% 76.6%,
+    4% 75.9
