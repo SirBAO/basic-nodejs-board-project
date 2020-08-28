@@ -161,4 +161,50 @@ export default defineComponent({
     onMounted(() => {
       let wrapperHeight = screen.height
       const footerEl = document.getElementById('footer')
-      const footerHe
+      const footerHeight = footerEl?.getBoundingClientRect().height
+      if (typeof footerHeight === 'number') {
+        wrapperHeight = wrapperHeight - footerHeight * 2
+      }
+      wrapperStyle.value = {
+        'min-height': wrapperHeight + 'px'
+      }
+    })
+
+    /**
+     * Watches the app loading status, adding the `nprogress-custom-parent`
+     * class to the nprogress container when loading.
+     */
+    watch(
+      () => appStore.appLoading,
+      newState => {
+        loadingBarClass.value['nprogress-custom-parent'] = newState
+      }
+    )
+
+    return {
+      title: computed(() => metaStore.getTitle),
+      theme: computed(() => appStore.theme),
+      scripts: computed(() => metaStore.scripts),
+      themeConfig: computed(() => appStore.themeConfig),
+      headerImage: computed(() => {
+        return {
+          backgroundImage: `url(${
+            commonStore.headerImage
+          }), url(${require('@/assets/default-cover.jpg')})`,
+          opacity: commonStore.headerImage !== '' ? 1 : 0
+        }
+      }),
+      headerBaseBackground: computed(() => {
+        return {
+          background: appStore.themeConfig.theme.header_gradient_css,
+          opacity: commonStore.headerImage !== '' ? 0.91 : 0.99
+        }
+      }),
+      wrapperStyle: computed(() => wrapperStyle.value),
+      handleEscKey: appStore.handleEscKey,
+      isMobile: computed(() => commonStore.isMobile),
+      configReady: computed(() => appStore.configReady),
+      cssVariables: computed(() => {
+        if (appStore.theme === 'theme-dark') {
+          return `
+            --text-accent: ${appS
