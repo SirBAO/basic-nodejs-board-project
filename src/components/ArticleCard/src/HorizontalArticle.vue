@@ -36,4 +36,56 @@
             </template>
             <template v-else-if="post.tags && post.tags.length <= 0">
               <li>
-                <em># {{ t('settings.default-tag') }}
+                <em># {{ t('settings.default-tag') }}</em>
+              </li>
+            </template>
+            <ob-skeleton
+              v-else
+              :count="2"
+              tag="li"
+              height="16px"
+              width="35px"
+            />
+          </ul>
+        </span>
+
+        <router-link
+          v-if="post.title"
+          :to="{ name: 'post', params: { slug: post.slug } }"
+        >
+          <h1 data-dia="article-link">{{ post.title }}</h1>
+        </router-link>
+        <ob-skeleton v-else tag="h1" height="3rem" />
+
+        <p v-if="post.text">{{ post.text }}</p>
+        <ob-skeleton v-else tag="p" :count="3" height="20px" />
+
+        <div class="article-footer" v-if="post.count_time">
+          <div class="flex flex-row items-center">
+            <img
+              class="hover:opacity-50 cursor-pointer"
+              v-lazy="post.author.avatar"
+              alt=""
+              @click="handleAuthorClick(post.author.link)"
+            />
+            <span class="text-ob-dim">
+              <strong
+                class="
+                  text-ob-normal
+                  pr-1.5
+                  hover:text-ob hover:opacity-50
+                  cursor-pointer
+                "
+                @click="handleAuthorClick(post.author.link)"
+              >
+                {{ post.author.name }}
+              </strong>
+              {{ t('settings.shared-on') }} {{ t(post.date.month) }}
+              {{ post.date.day }}, {{ post.date.year }}
+            </span>
+          </div>
+        </div>
+
+        <div class="article-footer" v-else>
+          <div class="flex flex-row items-center mt-6">
+            <ob-skeleton
