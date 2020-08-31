@@ -392,4 +392,8 @@ body {
 }
 
 .app-banner-screen {
-  transition: ease-in-out opaci
+  transition: ease-in-out opacity 300ms;
+  z-index: 2;
+  opacity: 0.91;
+}
+</style>
