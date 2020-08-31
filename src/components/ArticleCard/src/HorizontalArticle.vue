@@ -89,3 +89,51 @@
         <div class="article-footer" v-else>
           <div class="flex flex-row items-center mt-6">
             <ob-skeleton
+              class="mr-2"
+              height="28px"
+              width="28px"
+              :circle="true"
+            />
+            <span class="text-ob-dim mt-1">
+              <ob-skeleton height="20px" width="150px" />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { computed, defineComponent, toRefs } from 'vue'
+import { useAppStore } from '@/stores/app'
+import { useI18n } from 'vue-i18n'
+
+export default defineComponent({
+  name: 'ObHorizontalArticle',
+  props: {
+    data: {
+      type: Object
+    }
+  },
+  setup(props) {
+    const appStore = useAppStore()
+    const { t } = useI18n()
+    const post = toRefs(props).data
+
+    const handleAuthorClick = (link: string) => {
+      if (link === '') link = window.location.href
+      window.location.href = link
+    }
+
+    return {
+      bannerHoverGradient: computed(() => {
+        return { background: appStore.themeConfig.theme.header_gradient_css }
+      }),
+      post,
+      handleAuthorClick,
+      t
+    }
+  }
+})
+</script>
