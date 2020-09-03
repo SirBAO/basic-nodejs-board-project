@@ -21,4 +21,58 @@ export default defineComponent({
   props: {
     hover: {
       type: Boolean,
-      default: 
+      default: false
+    }
+  },
+  setup(props, { emit }) {
+    const commonStore = useCommonStore()
+    const mouseHover = toRefs(props).hover
+    const dropdownStore = useDropdownStore()
+    const eventId = ref(0)
+
+    watch(
+      () => dropdownStore.commandName,
+      (newName, oldName) => {
+        const name = newName ? newName : oldName
+        // Uid is used to prevent event being emitted
+        // to all dropdown @command handler.
+        if (eventId.value === dropdownStore.uid) emit('command', name)
+      }
+    )
+
+    let sharedState: { active: boolean } = reactive({
+      active: false
+    })
+
+    const toggle = () => {
+      if (!sharedState.active) eventId.value = dropdownStore.setUid()
+      if (!mouseHover.value) sharedState.active = !sharedState.active
+    }
+
+    const onClickAway = () => {
+      if (!mouseHover.value && !commonStore.isMobile) {
+        sharedState.active = false
+        eventId.value = 0
+      }
+    }
+
+    const hoverHandler = () => {
+      if (!sharedState.active) eventId.value = dropdownStore.setUid()
+      if (mouseHover.value) sharedState.active = true
+    }
+
+    const leaveHandler = () => {
+      if (mouseHover.value) {
+        sharedState.active = false
+        eventId.value = 0
+      }
+    }
+
+    provide('sharedState', sharedState)
+
+    return { toggle, onClickAway, hoverHandler, leaveHandler }
+  }
+})
+</script>
+
+<style lang="scss" scoped></style>
