@@ -29,4 +29,17 @@ export default defineComponent({
     position: relative;
     z-index: 20;
     &:after {
-      cont
+      content: '>';
+      position: absolute;
+      top: 0.05rem;
+      right: -0.95rem;
+      opacity: 0.65;
+    }
+    &:last-of-type {
+      &:after {
+        content: '';
+      }
+    }
+  }
+}
+</style>
