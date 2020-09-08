@@ -50,3 +50,16 @@ export default defineComponent({
     }
   }
 })
+</script>
+
+<style lang="scss" scoped>
+.logo-image {
+  height: 200px;
+  width: 200px;
+  max-width: 200px;
+  top: -60px;
+  left: -60px;
+  opacity: 0.05;
+  @apply absolute mr-2 rounded-full;
+}
+</style>
