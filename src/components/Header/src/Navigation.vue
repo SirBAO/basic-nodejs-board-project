@@ -116,4 +116,46 @@ export default defineComponent({
   name: 'Navigation',
   components: { Dropdown, DropdownMenu, DropdownItem },
   setup() {
-    const 
+    const { t, te } = useI18n()
+    const router = useRouter()
+    const appStore = useAppStore()
+
+    const pushPage = (path: string): void => {
+      if (!path) return
+      if (isExternal(path)) {
+        window.location.href = path
+      } else {
+        router.push({
+          path: path
+        })
+      }
+    }
+
+    return {
+      routes: computed(() => appStore.themeConfig.menu.menus),
+      pushPage,
+      te,
+      t
+    }
+  }
+})
+</script>
+
+<style lang="scss" scoped>
+.nav-link {
+  @apply hover:text-ob-bright;
+  &:hover {
+    &:before {
+      @apply opacity-60;
+    }
+  }
+  &:before {
+    @apply absolute rounded-lg opacity-0 transition bg-ob-deep-800 z-40;
+    content: '';
+    top: -4px;
+    left: -4px;
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+  }
+}
+</style>
