@@ -59,4 +59,61 @@
             block
             px-1.5
             py-0.5
- 
+            rounded-md
+            relative
+            uppercase
+          "
+        >
+          <span
+            class="relative z-50"
+            v-if="$i18n.locale === 'cn' && route.i18n.cn"
+          >
+            {{ route.i18n.cn }}
+          </span>
+          <span
+            class="relative z-50"
+            v-else-if="$i18n.locale === 'en' && route.i18n.en"
+          >
+            {{ route.i18n.en }}
+          </span>
+          <span class="relative z-50" v-else>{{ route.name }}</span>
+          <DropdownMenu>
+            <DropdownItem
+              v-for="sub in route.children"
+              :key="sub.path"
+              :name="sub.path"
+            >
+              <span
+                class="relative z-50"
+                v-if="$i18n.locale === 'cn' && sub.i18n.cn"
+              >
+                {{ sub.i18n.cn }}
+              </span>
+              <span
+                class="relative z-50"
+                v-else-if="$i18n.locale === 'en' && sub.i18n.en"
+              >
+                {{ sub.i18n.en }}
+              </span>
+              <span class="relative z-50" v-else>{{ sub.name }}</span>
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </li>
+    </ul>
+  </nav>
+</template>
+
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { useAppStore } from '@/stores/app'
+import { Dropdown, DropdownMenu, DropdownItem } from '@/components/Dropdown'
+import { isExternal } from '@/utils/validate'
+
+export default defineComponent({
+  name: 'Navigation',
+  components: { Dropdown, DropdownMenu, DropdownItem },
+  setup() {
+    const 
