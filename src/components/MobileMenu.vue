@@ -116,4 +116,58 @@
             </span>
             <span
               class="relative z-50"
-              v-else-if="$i18n.loca
+              v-else-if="$i18n.locale === 'en' && sub.i18n.en"
+            >
+              {{ sub.i18n.en }}
+            </span>
+            <span class="relative z-50" v-else>{{ sub.name }}</span>
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    </li>
+  </ul>
+</template>
+
+<script lang="ts">
+import { computed, defineComponent, onMounted, ref } from 'vue'
+import { useAppStore } from '@/stores/app'
+import { useI18n } from 'vue-i18n'
+import { Dropdown, DropdownMenu, DropdownItem } from '@/components/Dropdown'
+import { useRouter } from 'vue-router'
+import { useNavigatorStore } from '@/stores/navigator'
+import { useAuthorStore } from '@/stores/author'
+import { AuthorPosts } from '@/models/Post.class'
+import Social from '@/components/Social.vue'
+
+export default defineComponent({
+  name: 'ObMobileMenu',
+  components: { Dropdown, DropdownMenu, DropdownItem, Social },
+  setup() {
+    const appStore = useAppStore()
+    const authorStore = useAuthorStore()
+    const router = useRouter()
+    const navigatorStore = useNavigatorStore()
+    const { t } = useI18n()
+
+    const authorData = ref(new AuthorPosts())
+
+    const fetchAuthor = async () => {
+      let author = appStore.themeConfig.site.author.toLocaleLowerCase()
+      author.replace(/[\s]+/g, '-')
+      await authorStore.fetchAuthorData(author).then(data => {
+        authorData.value = data
+      })
+    }
+
+    const pushPage = (path: string): void => {
+      if (!path) return
+      navigatorStore.toggleMobileMenu()
+      navigatorStore.setOpenNavigator(false)
+      if (path.match(/(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g)) {
+        window.location.href = path
+      } else {
+        router.push({
+          path: path
+        })
+      }
+   
