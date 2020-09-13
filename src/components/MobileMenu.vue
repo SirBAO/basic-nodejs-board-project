@@ -56,4 +56,64 @@
       <div
         class="text-sm block px-1.5 py-0.5 rounded-md relative uppercase"
         @click="pushPage(route.path)"
-        v-if="route.child
+        v-if="route.children && route.children.length === 0"
+      >
+        <span
+          class="relative z-50"
+          v-if="$i18n.locale === 'cn' && route.i18n.cn"
+        >
+          {{ route.i18n.cn }}
+        </span>
+        <span
+          class="relative z-50"
+          v-else-if="$i18n.locale === 'en' && route.i18n.en"
+        >
+          {{ route.i18n.en }}
+        </span>
+        <span class="relative z-50" v-else>{{ route.name }}</span>
+      </div>
+      <Dropdown
+        @command="pushPage"
+        v-else
+        class="
+          flex flex-col
+          justify-center
+          items-center
+          nav-link
+          text-sm
+          block
+          px-1.5
+          py-0.5
+          rounded-md
+          relative
+          uppercase
+        "
+      >
+        <span
+          class="relative z-50"
+          v-if="$i18n.locale === 'cn' && route.i18n.cn"
+        >
+          {{ route.i18n.cn }}
+        </span>
+        <span
+          class="relative z-50"
+          v-else-if="$i18n.locale === 'en' && route.i18n.en"
+        >
+          {{ route.i18n.en }}
+        </span>
+        <span class="relative z-50" v-else>{{ route.name }}</span>
+        <DropdownMenu expand>
+          <DropdownItem
+            v-for="sub in route.children"
+            :key="sub.path"
+            :name="sub.path"
+          >
+            <span
+              class="relative z-50"
+              v-if="$i18n.locale === 'cn' && sub.i18n.cn"
+            >
+              {{ sub.i18n.cn }}
+            </span>
+            <span
+              class="relative z-50"
+              v-else-if="$i18n.loca
