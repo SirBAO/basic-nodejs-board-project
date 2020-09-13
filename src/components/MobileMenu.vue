@@ -170,4 +170,23 @@ export default defineComponent({
           path: path
         })
       }
-   
+    }
+
+    onMounted(fetchAuthor)
+
+    return {
+      themeConfig: computed(() => appStore.themeConfig),
+      gradientBackground: computed(() => {
+        return { background: appStore.themeConfig.theme.header_gradient_css }
+      }),
+      statistic: computed(() => appStore.statistic),
+      routes: computed(() => appStore.themeConfig.menu.menus),
+      authorData,
+      pushPage,
+      t
+    }
+  }
+})
+</script>
+
+<style lang="scss" scoped></style>
