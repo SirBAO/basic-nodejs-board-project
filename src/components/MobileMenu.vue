@@ -10,4 +10,50 @@
 
     <h2 class="text-center pt-4 text-4xl font-semibold text-ob-bright">
       <template v-if="authorData.name">
-        {{ auth
+        {{ authorData.name }}
+      </template>
+      <ob-skeleton v-else height="2.25rem" width="7rem" />
+    </h2>
+
+    <span class="h-1 w-14 rounded-full mt-2" :style="gradientBackground" />
+
+    <p
+      v-if="authorData.description"
+      class="pt-6 px-2 w-full text-sm text-center text-ob-dim"
+      v-html="authorData.description"
+    />
+    <p v-else class="pt-6 px-10 w-full text-sm text-center flex flex-col gap-2">
+      <ob-skeleton :count="2" height="20px" width="10rem" />
+    </p>
+    <Social :socials="authorData.socials" />
+    <ul class="grid grid-cols-3 pt-4 w-full px-2 text-lg">
+      <li class="col-span-1 text-center">
+        <span class="text-ob-bright">{{ authorData.post_list.length }}</span>
+        <p class="text-base text-ob-dim">{{ t('settings.articles') }}</p>
+      </li>
+      <li class="col-span-1 text-center">
+        <span class="text-ob-bright">{{ authorData.categories }}</span>
+        <p class="text-base text-ob-dim">{{ t('settings.categories') }}</p>
+      </li>
+      <li class="col-span-1 text-center">
+        <span class="text-ob-bright">{{ authorData.tags }}</span>
+        <p class="text-base text-ob-dim">{{ t('settings.tags') }}</p>
+      </li>
+    </ul>
+  </div>
+  <ul
+    class="
+      flex flex-col
+      justify-center
+      items-center
+      mt-8
+      w-full
+      list-none
+      text-ob-bright
+    "
+  >
+    <li class="pb-2 cursor-pointer" v-for="route in routes" :key="route.path">
+      <div
+        class="text-sm block px-1.5 py-0.5 rounded-md relative uppercase"
+        @click="pushPage(route.path)"
+        v-if="route.child
