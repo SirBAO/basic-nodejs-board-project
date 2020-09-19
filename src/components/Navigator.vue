@@ -230,4 +230,60 @@ export default defineComponent({
   opacity: 1;
   svg {
     pointer-events: none;
-    stroke: currentCol
+    stroke: currentColor !important;
+  }
+  .Ob-Navigator-submenu {
+    @apply absolute top-0 left-0 m-0 p-0 list-none;
+    li {
+      @apply flex justify-center items-center bg-ob-deep-900 absolute rounded-full w-12 h-12 p-0.5;
+      opacity: 0;
+      transition: all 0.55s cubic-bezier(0, 1.8, 1, 1.2);
+      &:hover {
+        .Ob-Navigator-tips {
+          opacity: 1;
+          transform: translateX(-15%);
+        }
+      }
+      div {
+        @apply flex justify-center items-center bg-ob-deep-800 w-full h-full rounded-full;
+      }
+    }
+  }
+  &.Ob-Navigator--open .Ob-Navigator-submenu {
+    li {
+      opacity: 1;
+      &:first-of-type {
+        transform: translateX(calc(3rem * -1.6));
+      }
+      &:nth-of-type(2) {
+        transform: translate(calc(3rem * -1.2), calc(3rem * -1.2));
+      }
+      &:nth-of-type(3) {
+        transform: translateY(calc(3rem * -1.6));
+      }
+      &:nth-of-type(4) {
+        transform: translateY(calc(3rem * -2.8));
+      }
+    }
+  }
+  &.Ob-Navigator--scrolling {
+    transform: translateX(calc(3rem * 0.8));
+    opacity: 0.6;
+  }
+  .Ob-Navigator-tips {
+    @apply absolute bg-ob-deep-800 py-1 px-1.5 z-50 text-xs text-ob-bright whitespace-nowrap rounded-md shadow;
+    pointer-events: none;
+    opacity: 0;
+    right: 60%;
+    transition: all 0.55s cubic-bezier(0, 1.8, 1, 1.2);
+  }
+  .Ob-Navigator-ball {
+    @apply relative flex justify-center items-center bg-ob-deep-800 w-full h-full p-0.5 rounded-full;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 12px 28px rgba(0, 0, 0, 0.2);
+    z-index: 200;
+    div {
+      @apply flex justify-center items-center w-full h-full rounded-full;
+    }
+  }
+  .Ob-Navigator-btt {
+    @apply absolute flex justify-cen
