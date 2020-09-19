@@ -165,4 +165,69 @@ export default defineComponent({
       time.value = timeNow
 
       if (navigatorStore.openNavigator === true && needReopen.value === true)
-        needRe
+        needReopen.value = false
+      setTimeout(() => {
+        navigatorStore.toggleOpenNavigator()
+      }, 10)
+    }
+
+    const handleBackToTop = () => {
+      navigatorStore.setOpenNavigator(false)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    }
+
+    const handleOpenMenu = () => {
+      navigatorStore.toggleMobileMenu()
+    }
+
+    const handleGoHome = () => {
+      navigatorStore.setOpenNavigator(false)
+      router.push('/')
+    }
+
+    const handleSearch = () => {
+      navigatorStore.setOpenNavigator(false)
+      searchStore.setOpenModal(true)
+    }
+
+    onMounted(() => {
+      document.addEventListener('scroll', scrollHandler)
+    })
+
+    onUnmounted(() => {
+      document.removeEventListener('scroll', scrollHandler)
+    })
+
+    return {
+      gradient: computed(() => {
+        return { background: appStore.themeConfig.theme.header_gradient_css }
+      }),
+      showProgress: computed(() => {
+        return progress.value > 5
+      }),
+      isMobile: computed(() => commonStore.isMobile),
+      openNavigator: computed(() => navigatorStore.openNavigator),
+      progress,
+      handleNavigatorToggle,
+      handleBackToTop,
+      handleOpenMenu,
+      handleGoHome,
+      handleSearch,
+      scrolling,
+      t
+    }
+  }
+})
+</script>
+
+<style lang="scss" scoped>
+#Ob-Navigator {
+  @apply fixed flex justify-center items-center bottom-4 right-4 w-12 h-12 rounded-full z-40 shadow-lg text-white text-2xl stroke-0 border-2 border-ob-deep-900 cursor-pointer;
+  transition: all 0.55s cubic-bezier(0, 1.8, 1, 1.2);
+  opacity: 1;
+  svg {
+    pointer-events: none;
+    stroke: currentCol
