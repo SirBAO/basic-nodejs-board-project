@@ -106,4 +106,63 @@ import { useAppStore } from '@/stores/app'
 import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useNavigatorStore } from '@/stores/navigator'
-import { useRouter } f
+import { useRouter } from 'vue-router'
+import { useSearchStore } from '@/stores/search'
+import { useCommonStore } from '@/stores/common'
+
+export default defineComponent({
+  name: 'ObNavigator',
+  setup() {
+    const appStore = useAppStore()
+    const commonStore = useCommonStore()
+    const { t } = useI18n()
+    const navigatorStore = useNavigatorStore()
+    const searchStore = useSearchStore()
+    const router = useRouter()
+
+    const progress = ref(0)
+    const scrolling = ref(false)
+
+    let time = ref(0)
+    let scrollingHandler = 0
+    let menuReopenHandler = 0
+    let needReopen = ref(false)
+
+    const scrollHandler = () => {
+      clearTimeout(scrollingHandler)
+      clearTimeout(menuReopenHandler)
+
+      scrolling.value = true
+      scrollingHandler = setTimeout(() => {
+        scrolling.value = false
+      }, 700)
+
+      if (needReopen.value || navigatorStore.openNavigator === true) {
+        if (navigatorStore.openNavigator === true)
+          navigatorStore.setOpenNavigator(false)
+        needReopen.value = true
+        menuReopenHandler = setTimeout(() => {
+          navigatorStore.openNavigator = true
+          needReopen.value = false
+        }, 700)
+      }
+
+      setTimeout(() => {
+        progress.value = Number(
+          (
+            (window.pageYOffset /
+              (document.documentElement.scrollHeight - window.innerHeight)) *
+            100
+          ).toFixed(0)
+        )
+      }, 0)
+    }
+
+    const handleNavigatorToggle = () => {
+      const timeNow = new Date().getTime()
+      if (timeNow - time.value < 10) return
+
+      time.value = timeNow
+
+      if (navigatorStore.openNavigator === true && needReopen.value === true)
+        needRe
