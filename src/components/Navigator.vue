@@ -41,4 +41,69 @@
     <ul class="Ob-Navigator-submenu">
       <li
         id="Ob-Navigator-top"
-        :style="gra
+        :style="gradient"
+        @click.stop.prevent="handleBackToTop"
+      >
+        <div>
+          <svg-icon
+            class="text-ob-bright stroke-current"
+            icon-class="nav-top"
+          />
+        </div>
+        <span class="Ob-Navigator-tips">
+          {{ t('settings.tips-back-to-top') }}
+        </span>
+      </li>
+      <li
+        id="Ob-Navigator-menu"
+        :style="gradient"
+        @click.stop.prevent="handleOpenMenu"
+        v-if="isMobile"
+      >
+        <div>
+          <svg-icon
+            class="text-ob-bright stroke-current"
+            icon-class="nav-menu"
+          />
+        </div>
+        <span class="Ob-Navigator-tips">
+          {{ t('settings.tips-open-menu') }}
+        </span>
+      </li>
+      <li
+        id="Ob-Navigator-home"
+        :style="gradient"
+        @click.stop.prevent="handleGoHome"
+      >
+        <div>
+          <svg-icon
+            class="text-ob-bright stroke-current"
+            icon-class="nav-home"
+          />
+        </div>
+        <span class="Ob-Navigator-tips">
+          {{ t('settings.tips-back-to-home') }}
+        </span>
+      </li>
+      <li
+        id="Ob-Navigator-search"
+        :style="gradient"
+        @click.stop.prevent="handleSearch"
+      >
+        <div>
+          <svg-icon class="text-ob-bright stroke-current" icon-class="search" />
+        </div>
+        <span class="Ob-Navigator-tips">
+          {{ t('settings.tips-open-search') }}
+        </span>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script lang="ts">
+import { useAppStore } from '@/stores/app'
+import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useNavigatorStore } from '@/stores/navigator'
+import { useRouter } f
