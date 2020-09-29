@@ -111,4 +111,47 @@
                       </div>
                       <div class="search-hit-content-wrapper">
                         <span
-            
+                          class="search-hit-title"
+                          v-html="result.content"
+                        ></span>
+                        <span class="search-hit-path">{{ result.title }}</span>
+                      </div>
+                      <div class="search-hit-action">
+                        <svg
+                          class="DocSearch-Hit-Select-Icon"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 20 20"
+                        >
+                          <g
+                            stroke="currentColor"
+                            fill="none"
+                            fill-rule="evenodd"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path d="M18 3v4c0 2-2 4-4 4H2"></path>
+                            <path d="M8 17l-6-6 6-6"></path>
+                          </g>
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </section>
+            <section v-else>
+              <div class="search-hit-label">
+                {{ t('settings.recently-search') }}
+              </div>
+              <ul id="search-menu">
+                <li
+                  v-for="(result, index) in recentResults"
+                  :key="result.slug"
+                  :class="{
+                    'search-hit': true,
+                    active: index == menuActiveIndex
+                  }"
+                  :id="'search-hit-item-' + index"
+                >
+                  <a href="javascript:void(0)" @clic
