@@ -299,4 +299,74 @@
                   </g>
                 </svg>
               </span>
-              <span class="search-commands-lab
+              <span class="search-commands-label">
+                {{ t('settings.cmd-to-close') }}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </transition>
+  </div>
+</template>
+
+<script lang="ts">
+import { SearchResultType } from '@/models/Search.class'
+import { useSearchStore } from '@/stores/search'
+import {
+  computed,
+  defineComponent,
+  onBeforeMount,
+  onMounted,
+  onUnmounted,
+  onUpdated,
+  ref,
+  watch
+} from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+
+/**
+ * Lodash package is imported through CDN.
+ *
+ * For version 4.17.21
+ */
+declare const _: any
+
+export default defineComponent({
+  name: 'ObSearchModal',
+  setup() {
+    const searchStore = useSearchStore()
+    const searchInput = ref<HTMLDivElement>()
+    const searchIndexStatus = ref(false)
+    const searchResults = ref<SearchResultType[]>([])
+    const router = useRouter()
+    const openModal = ref(false)
+    const openSearchContainer = ref(false)
+    const keyword = ref('')
+    const recentResults = ref()
+    const menuActiveIndex = ref(0)
+    const menuMaxIndex = ref(0)
+    const isEmpty = ref(false)
+    const { t } = useI18n()
+
+    /**
+     * Handlers
+     */
+    const handleStatusChange = (status: boolean) => {
+      searchStore.setOpenModal(status)
+    }
+
+    const handleLinkClick = (result: SearchResultType) => {
+      searchStore.addRecentSearch(result)
+      reloadRecentResult()
+      handleStatusChange(false)
+      if (result.slug !== '')
+        router.push({ name: 'post', params: { slug: result.slug } })
+    }
+
+    const handleResetInput = () => {
+      keyword.value = ''
+      searchResults.value = []
+      isEmpty.value = false
+      resetIndex(rec
