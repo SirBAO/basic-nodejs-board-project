@@ -480,4 +480,59 @@ export default defineComponent({
     )
 
     onUpdated(() => {
-      /** Reset default values. 
+      /** Reset default values. */
+      keyword.value = ''
+      searchResults.value = []
+
+      /** Delay focus for animation to finish. */
+      setTimeout(() => {
+        if (searchInput.value) searchInput.value.focus()
+      }, 200)
+    })
+
+    onUnmounted(() => {
+      document.body.classList.remove('modal--active')
+    })
+
+    watch(
+      () => searchStore.openModal,
+      status => {
+        /**
+         * This watch is used to delay the animation
+         * of the search box container.
+         */
+        if (status === true) reloadRecentResult()
+        openModal.value = status
+        setTimeout(() => {
+          openSearchContainer.value = status
+        }, 200)
+      }
+    )
+
+    return {
+      openModal: computed(() => openModal.value),
+      openSearchContainer: computed(() => openSearchContainer.value),
+      searchResultsCount: computed(() => {
+        return t('settings.search-result').replace(
+          '[total]',
+          String(searchResults.value.length)
+        )
+      }),
+      handleStatusChange,
+      handleLinkClick,
+      searchInput,
+      searchResults,
+      keyword,
+      isEmpty,
+      searchKeyword,
+      recentResults,
+      handleResetInput,
+      handleArrowUp,
+      handleArrowDown,
+      handleEnterDown,
+      menuActiveIndex,
+      t
+    }
+  }
+})
+</script>
