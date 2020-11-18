@@ -420,4 +420,64 @@ export default defineComponent({
 
     const handleEnterDown = () => {
       if (searchResults.value.length === 0 && recentResults.value.length > 0) {
-       
+        handleLinkClick(recentResults.value[menuActiveIndex.value])
+      }
+      if (searchResults.value.length > 0) {
+        handleLinkClick(searchResults.value[menuActiveIndex.value])
+      }
+    }
+
+    /**
+     * Search for records, debounce this function for 500ms
+     * for user to finish typing. Prevent uncessary searches
+     * between typing of a keyword.
+     */
+    const searchKeyword = _.debounce((e: any) => {
+      if (e.target.value !== '') {
+        searchResults.value = searchStore.searchIndexes.search(e.target.value)
+        if (searchResults.value.length > 0) {
+          resetIndex(searchResults.value.length)
+          isEmpty.value = false
+        } else {
+          isEmpty.value = true
+        }
+      } else {
+        isEmpty.value = false
+        searchResults.value = []
+        resetIndex(recentResults.value.length)
+      }
+    }, 500)
+
+    /** Refetch the data of recent search results. */
+    const reloadRecentResult = () => {
+      recentResults.value = searchStore.recentResults.getData()
+      resetIndex(recentResults.value.length)
+    }
+
+    const resetIndex = (max: number) => {
+      menuActiveIndex.value = 0
+      menuMaxIndex.value = max - 1
+    }
+
+    /**
+     * Initialize search modual default data.
+     */
+    const initSearch = async () => {
+      searchIndexStatus.value = false
+      isEmpty.value = false
+      await searchStore.fetchSearchIndex().then(() => {
+        searchIndexStatus.value = true
+      })
+    }
+
+    onBeforeMount(initSearch)
+
+    onMounted(() =>
+      /** Delay focus for animation to finish. */
+      setTimeout(() => {
+        if (searchInput.value) searchInput.value.focus()
+      }, 200)
+    )
+
+    onUpdated(() => {
+      /** Reset default values. 
