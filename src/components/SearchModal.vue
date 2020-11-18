@@ -369,4 +369,55 @@ export default defineComponent({
       keyword.value = ''
       searchResults.value = []
       isEmpty.value = false
-      resetIndex(rec
+      resetIndex(recentResults.value.length)
+    }
+
+    const handleArrowUp = () => {
+      if (isEmpty.value === true) return
+      if (menuActiveIndex.value === 0) {
+        menuActiveIndex.value = menuMaxIndex.value
+      } else {
+        menuActiveIndex.value = menuActiveIndex.value - 1
+      }
+      moveMenuWindow()
+    }
+
+    const handleArrowDown = () => {
+      if (isEmpty.value === true) return
+      if (menuActiveIndex.value === menuMaxIndex.value) {
+        menuActiveIndex.value = 0
+      } else {
+        menuActiveIndex.value = menuActiveIndex.value + 1
+      }
+      moveMenuWindow()
+    }
+
+    const moveMenuWindow = () => {
+      const searchDropdownEl = document.getElementById('Search-Dropdown')
+      const activeMenuEl = document.getElementById(
+        `search-hit-item-${menuActiveIndex.value}`
+      )
+      const containerHeight = searchDropdownEl?.getBoundingClientRect().height
+      const menuElHeight = activeMenuEl?.getBoundingClientRect().height
+
+      if (menuElHeight && containerHeight && searchDropdownEl) {
+        const currentMenuElheight =
+          36 + menuElHeight * (menuActiveIndex.value + 1)
+        const heightDiff = currentMenuElheight - containerHeight
+        if (heightDiff > 0) {
+          searchDropdownEl.scrollTo({
+            top: heightDiff
+          })
+        }
+      }
+
+      if (searchDropdownEl && menuActiveIndex.value === 0) {
+        searchDropdownEl.scrollTo({
+          top: 0
+        })
+      }
+    }
+
+    const handleEnterDown = () => {
+      if (searchResults.value.length === 0 && recentResults.value.length > 0) {
+       
