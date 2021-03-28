@@ -126,3 +126,55 @@ export class CategoryAndTags {
   default_category = '' // 默认分类
   category_map = '' // 分类别名
   tag_map = '' // 标签别名
+  constructor(raw?: { [key: string]: string | boolean }) {
+    if (raw) {
+      for (const key of Object.keys(this)) {
+        if (Object.prototype.hasOwnProperty.call(raw, key)) {
+          Object.assign(this, { [key]: raw[key] })
+        }
+      }
+    }
+  }
+}
+
+export class DateTimeFormat {
+  date_format = '' // 日期格式	YYYY-MM-DD
+  time_format = '' // 时间格式	H:mm:ss
+  constructor(raw?: { [key: string]: string | boolean }) {
+    if (raw) {
+      for (const key of Object.keys(this)) {
+        if (Object.prototype.hasOwnProperty.call(raw, key)) {
+          Object.assign(this, { [key]: raw[key] })
+        }
+      }
+    }
+  }
+}
+
+export class Pagination {
+  per_page = 0 // 每页显示的文章量 (0 = 关闭分页功能)
+  pagination_dir = '' // 分页目录
+  constructor(raw?: { [key: string]: string | boolean }) {
+    if (raw) {
+      for (const key of Object.keys(this)) {
+        if (Object.prototype.hasOwnProperty.call(raw, key)) {
+          Object.assign(this, { [key]: raw[key] })
+        }
+      }
+    }
+  }
+}
+
+export class Extensions {
+  theme: string | boolean = false // 当前主题名称。值为false时禁用主题
+  deploy = {} // 部署部分的设置
+  constructor(raw?: { [key: string]: string | boolean }) {
+    if (raw) {
+      for (const key of Object.keys(this)) {
+        if (Object.prototype.hasOwnProperty.call(raw, key)) {
+          Object.assign(this, { [key]: raw[key] })
+        }
+      }
+    }
+  }
+}
