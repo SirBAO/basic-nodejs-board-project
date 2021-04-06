@@ -121,4 +121,81 @@ export class ThemeMenu implements ObMenu {
           Object.assign(this.menus, { [menu]: new Menu(extract[menu]) })
         }
       }
-      // Theme custom
+      // Theme custom menus
+      for (const otherMenu of Object.keys(raw)) {
+        if (defaultMenus.indexOf(otherMenu) < 0 && raw[otherMenu].name) {
+          Object.assign(this.menus, {
+            [otherMenu]: new Menu(raw[otherMenu])
+          })
+        }
+      }
+    }
+  }
+}
+
+export class Menu {
+  /** Name of the menu */
+  name = ''
+  /** Vue router path for the menu */
+  path = ''
+  /** Translation key for vue-i18n */
+  i18n: { cn?: string; en?: string } = {}
+  /** Sub menus */
+  children: Menu[] = []
+
+  /**
+   * Model class for Hexo theme's menu
+   *
+   * @param raw Config data generated from Hexo
+   */
+  constructor(menu: { [key: string]: any }) {
+    this.name = menu.name
+    this.path = menu.path ? menu.path : null
+    this.i18n = menu.i18n ? menu.i18n : {}
+    this.children = menu.children
+      ? Object.keys(menu.children).map(
+          (key: string) => new Menu(menu.children[key])
+        )
+      : []
+  }
+}
+
+export class Avatar {
+  source_path = ''
+
+  /**
+   * Model class for Avatar data
+   *
+   * @param raw - Config data generated from Hexo
+   */
+  constructor(raw?: SwitchConfig) {
+    if (raw) {
+      for (const key of Object.keys(this)) {
+        if (Object.prototype.hasOwnProperty.call(raw, key)) {
+          Object.assign(this, { [key]: raw[key] })
+        }
+      }
+    }
+  }
+}
+
+interface ObTheme {
+  /**
+   * Theme mode
+   *
+   * @remarks `dark` mode or `light` mode
+   * */
+  dark_mode: boolean | string
+  profile_shape: string
+  /**
+   * Theme main set of gradient colors
+   *
+   * @remarks Consist of 3 colors
+   */
+  gradient: {
+    color_1: string
+    color_2: string
+    color_3: string
+  }
+  /** Css gradient style property used for the header */
+  
