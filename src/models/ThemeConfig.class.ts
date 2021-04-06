@@ -252,4 +252,66 @@ export class Theme implements ObTheme {
           Object.assign(this, { [key]: raw[key] })
 
           if (key === 'gradient') {
-            const headerGradientCss = `linear-gr
+            const headerGradientCss = `linear-gradient(130deg, ${this.gradient.color_1}, ${this.gradient.color_2} 41.07%, ${this.gradient.color_3} 76.05%)`
+            Object.assign(this, {
+              header_gradient_css: headerGradientCss
+            })
+            Object.assign(this, {
+              background_gradient_style: {
+                background: headerGradientCss,
+                '-webkit-background-clip': 'text',
+                '-webkit-text-fill-color': 'transparent',
+                '-webkit-box-decoration-break': 'clone',
+                'box-decoration-break': 'clone'
+              }
+            })
+          }
+        }
+      }
+    }
+  }
+}
+
+export class Social {
+  github = ''
+  twitter = ''
+  stackoverflow = ''
+  wechat = ''
+  qq = ''
+  weibo = ''
+  csdn = ''
+  juejin = ''
+  zhihu = ''
+  customs: CustomSocials = new CustomSocials()
+
+  /**
+   * Model class for Social media links
+   *
+   * @param raw - Config data generated from Hexo
+   */
+  constructor(raw?: GeneralOptions) {
+    if (raw) {
+      for (const key of Object.keys(this)) {
+        if (Object.prototype.hasOwnProperty.call(raw, key)) {
+          if (key === 'customs') {
+            Object.assign(this.customs, new CustomSocials(raw[key]))
+          } else {
+            Object.assign(this, { [key]: raw[key] })
+          }
+        }
+      }
+    }
+  }
+}
+
+export class CustomSocial {
+  icon = {
+    iconfont: '',
+    img_link: ''
+  }
+  link = ''
+
+  constructor(raw?: GeneralOptions) {
+    if (raw) {
+      for (const key of Object.keys(this)) {
+        if (Object.prototype.hasOwnProperty.call(raw, key)) {
