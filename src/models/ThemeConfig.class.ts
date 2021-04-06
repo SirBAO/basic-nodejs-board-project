@@ -198,4 +198,58 @@ interface ObTheme {
     color_3: string
   }
   /** Css gradient style property used for the header */
-  
+  header_gradient_css: string
+  /** Css gradient style property used for any background */
+  background_gradient_style: {
+    background: string
+    '-webkit-background-clip': string
+    '-webkit-text-fill-color': string
+    'box-decoration-break': string
+  }
+}
+
+export class Theme implements ObTheme {
+  dark_mode = 'auto'
+  profile_shape = 'diamond'
+  feature = true
+  gradient = {
+    color_1: '#24c6dc',
+    color_2: '#5433ff',
+    color_3: '#ff0099'
+  }
+  header_gradient_css =
+    'linear-gradient(130deg, #24c6dc, #5433ff 41.07%, #ff0099 76.05%)'
+  background_gradient_style = {
+    background:
+      'linear-gradient(130deg, #24c6dc, #5433ff 41.07%, #ff0099 76.05%)',
+    '-webkit-background-clip': 'text',
+    '-webkit-text-fill-color': 'transparent',
+    '-webkit-box-decoration-break': 'clone',
+    'box-decoration-break': 'clone'
+  }
+
+  /**
+   * Model class for Avatar data
+   *
+   * @param raw - Config data generated from Hexo
+   */
+  constructor(raw?: GeneralOptions) {
+    if (raw) {
+      for (const key of Object.keys(this)) {
+        if (Object.prototype.hasOwnProperty.call(raw, key)) {
+          if (key === 'profile_shape') {
+            const allowedShapes = ['circle', 'diamond', 'rounded']
+            const convertedClasses = [
+              'circle-avatar',
+              'diamond-avatar',
+              'rounded-avatar'
+            ]
+            const shadeIndex = allowedShapes.indexOf(raw[key])
+            if (shadeIndex < 0) raw[key] = convertedClasses[1]
+            else raw[key] = convertedClasses[shadeIndex]
+          }
+
+          Object.assign(this, { [key]: raw[key] })
+
+          if (key === 'gradient') {
+            const headerGradientCss = `linear-gr
