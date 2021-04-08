@@ -315,3 +315,77 @@ export class CustomSocial {
     if (raw) {
       for (const key of Object.keys(this)) {
         if (Object.prototype.hasOwnProperty.call(raw, key)) {
+          if (key === 'icon') {
+            if (
+              String(raw[key]).match(
+                /([a-zA-Z0-9\s_\\.\-():])+(.svg|.png|.jpg)$/g
+              )
+            ) {
+              Object.assign(this.icon, { img_link: raw[key] })
+            } else {
+              Object.assign(this.icon, { iconfont: raw[key] })
+            }
+          } else {
+            Object.assign(this, { [key]: raw[key] })
+          }
+        }
+      }
+    }
+  }
+}
+
+export class CustomSocials {
+  socials: CustomSocial[] = []
+
+  /**
+   * Model class for Social media links
+   *
+   * @param raw - Config data generated from Hexo
+   */
+  constructor(raw?: { [key: string]: any }) {
+    if (raw) {
+      Object.assign(
+        this.socials,
+        Object.keys(raw).map((key: string) => new CustomSocial(raw[key]))
+      )
+    }
+  }
+}
+
+export class Site {
+  /** Website subtitle (used after `-`) */
+  subtitle = ''
+  /** Author of the blog website */
+  author = ''
+  /** Author's nick name */
+  nick = ''
+  /** Website description (used in the header meta tag) */
+  description = ''
+  /** Blog's default language */
+  language = 'en'
+  /** Allow use to change blog's locale */
+  multi_language = true
+  /** Site logo or brand logo */
+  logo = ''
+  /** Author avatar */
+  avatar = ''
+  /** China server beian info */
+  beian = {
+    number: '',
+    link: ''
+  }
+  /** China server police beian info */
+  police_beian = {
+    number: '',
+    link: ''
+  }
+
+  /**
+   * Model class for Site general settings
+   *
+   * @param raw - Config data generated from Hexo
+   */
+  constructor(raw?: GeneralOptions) {
+    if (raw) {
+      for (const key of Object.keys(this)) {
+        if (Object.prototype.hasOwnProperty.call(raw
