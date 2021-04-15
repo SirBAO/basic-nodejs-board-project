@@ -388,4 +388,100 @@ export class Site {
   constructor(raw?: GeneralOptions) {
     if (raw) {
       for (const key of Object.keys(this)) {
-        if (Object.prototype.hasOwnProperty.call(raw
+        if (Object.prototype.hasOwnProperty.call(raw, key)) {
+          Object.assign(this, { [key]: raw[key] })
+        }
+      }
+    }
+  }
+}
+
+export class SiteMeta {
+  cdn: {
+    locale: string
+    prismjs: string[]
+  } = {
+    locale: 'en',
+    prismjs: []
+  }
+  favicon = ''
+
+  /**
+   * Model class for Site meta settings
+   *
+   * @param raw - Config data generated from Hexo
+   */
+  constructor(raw?: GeneralOptions) {
+    if (raw) {
+      for (const key of Object.keys(this)) {
+        if (Object.prototype.hasOwnProperty.call(raw, key)) {
+          Object.assign(this, { [key]: raw[key] })
+        }
+      }
+    }
+  }
+}
+
+type MetaAttributes = 'nick' | 'mail' | 'link'
+
+interface PluginsData {
+  gitalk: {
+    enable: boolean
+    autoExpand: boolean
+    clientID: string
+    clientSecret: string
+    repo: string
+    owner: string
+    admin: Array<string>
+    id: string
+    language: string
+    distractionFreeMode: boolean
+    recentComment: boolean
+    proxy: string
+  }
+
+  valine: {
+    enable: boolean
+    app_id: string
+    app_key: string
+    avatar: string
+    placeholder: string
+    visitor: boolean
+    lang: string
+    meta: MetaAttributes[]
+    admin: string
+    recentComment: boolean
+  }
+  recent_comments: boolean
+  busuanzi: {
+    enable: boolean
+  }
+  copy_protection: {
+    enable: boolean
+    author: {
+      cn: string
+      en: string
+    }
+    link: {
+      cn: string
+      en: string
+    }
+    license: {
+      cn: string
+      en: string
+    }
+  }
+  aurora_bot: {
+    enable: boolean
+    locale: string
+    bot_type: string
+    tips: { [key: string]: { selector: string; text: string | string[] } }
+  }
+}
+
+export class Plugins implements PluginsData {
+  gitalk = {
+    enable: false,
+    autoExpand: true,
+    clientID: '',
+    clientSe
