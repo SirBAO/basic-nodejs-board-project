@@ -484,4 +484,68 @@ export class Plugins implements PluginsData {
     enable: false,
     autoExpand: true,
     clientID: '',
-    clientSe
+    clientSecret: '',
+    repo: 'blog-comments',
+    owner: 'TriDiamond',
+    admin: ['TriDiamond'],
+    id: 'location.pathname',
+    language: 'en',
+    distractionFreeMode: false,
+    recentComment: false,
+    proxy: ''
+  }
+  valine = {
+    enable: false,
+    app_id: '',
+    app_key: '',
+    avatar: 'mp',
+    placeholder: 'Leave your thoughts behind~',
+    visitor: true,
+    lang: '',
+    meta: [],
+    requiredFields: [],
+    avatarForce: false,
+    admin: '',
+    recentComment: false
+  }
+  recent_comments = false
+  busuanzi = {
+    enable: true
+  }
+  copy_protection = {
+    enable: true,
+    author: {
+      cn: '',
+      en: ''
+    },
+    link: {
+      cn: '',
+      en: ''
+    },
+    license: {
+      cn: '',
+      en: ''
+    }
+  }
+  aurora_bot = {
+    enable: false,
+    locale: 'en',
+    bot_type: 'dia',
+    tips: {}
+  }
+
+  /**
+   * Model class for Site meta settings
+   *
+   * @param raw - Config data generated from Hexo
+   */
+  constructor(raw?: GeneralOptions) {
+    if (raw) {
+      for (const key of Object.keys(this)) {
+        if (Object.prototype.hasOwnProperty.call(raw, key)) {
+          Object.assign(this, { [key]: raw[key] })
+        }
+      }
+    }
+  }
+}
