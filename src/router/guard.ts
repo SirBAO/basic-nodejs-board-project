@@ -12,4 +12,19 @@ router.beforeEach(async (to, from, next) => {
 
   // set page title
   const title = i18n.global.te(`menu.${String(to.name)}`)
-    ? i18n.
+    ? i18n.global.t(`menu.${String(to.name)}`)
+    : to.name
+  metaStore.setTitle(String(title))
+
+  // use beforeEach route guard to set the languages
+  i18n.global.locale = appStore.locale ? appStore.locale : 'en'
+
+  next()
+})
+
+router.afterEach(() => {
+  const appStore = useAppStore()
+  // finish progress bar
+  appStore.endLoading()
+  document.getElementById('App-Container')?.focus()
+})
