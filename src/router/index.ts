@@ -52,3 +52,23 @@ const routes = [
   {
     path: '/page/:slug*',
     name: 'page',
+    component: () => import(/* webpackChunkName: "page" */ '../views/Page.vue'),
+    props: true
+  },
+  {
+    path: '/result',
+    name: 'result',
+    component: () =>
+      import(/* webpackChunkName: "result" */ '../views/Result.vue'),
+    props: true
+  },
+  // 404 page must be placed at the end !!!
+  { path: '/:catchAll(.*)', redirect: '/404', hidden: true }
+]
+
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes
+})
+
+export default router
