@@ -64,4 +64,10 @@ export const useNavigatorStore = defineStore({
       }
     },
     toggleOpenNavigator() {
-  
+      this.openNavigator = !this.openNavigator
+    },
+    setOpenNavigator(status: boolean) {
+      this.openNavigator = status
+    }
+  }
+})
