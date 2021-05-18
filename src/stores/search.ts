@@ -37,4 +37,8 @@ export const useSearchStore = defineStore({
       else document.body.classList.remove('modal--active')
       document.getElementById('App-Container')?.focus()
     },
-    addRecentSearch(
+    addRecentSearch(result: { [key: string]: string }) {
+      this.recentResults.add(result)
+    }
+  }
+})
