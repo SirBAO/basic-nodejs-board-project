@@ -233,4 +233,86 @@
   }
 
   ul li::before {
-    cont
+    content: '•';
+    color: var(--text-accent);
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.15em;
+    padding: 0;
+    font-weight: bold;
+    text-shadow: 0 0 0.5em var(--accent-2);
+  }
+
+  ul ul li::before {
+    content: '•';
+  }
+
+  ul ul ul li::before {
+    content: '•';
+  }
+
+  /* numbered lists */
+  ol {
+    list-style: none;
+    counter-reset: li;
+  }
+
+  ol > li {
+    counter-increment: li;
+  }
+
+  ol > li::before,
+  ul ol > li::before,
+  ul ul ol > li::before,
+  ul ul ul ol > li::before {
+    content: '.' counter(li);
+    color: var(--text-accent);
+    font-weight: normal;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.5em;
+    margin-right: 0.5em;
+    text-align: right;
+    direction: rtl;
+    overflow: visible;
+    word-break: keep-all;
+    white-space: nowrap;
+  }
+
+  /* Remove blockquote left margin */
+  blockquote {
+    margin-inline-start: 0;
+  }
+
+  .custom-quote,
+  blockquote {
+    position: relative;
+    padding: 0.5rem 1rem 0.5rem 2rem;
+    color: var(--text-normal);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    margin-right: 0 !important;
+    border-left: 3px var(--text-accent) solid;
+    border-top: transparent;
+    border-bottom: transparent;
+    border-right: transparent;
+    background: linear-gradient(
+      135deg,
+      var(--background-primary),
+      var(--background-primary) 41.07%,
+      var(--background-secondary) 76.05%,
+      var(--background-secondary)
+    );
+  }
+
+  .custom-quote::before,
+  blockquote::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0px;
+    height: 2px;
+    width: 76%;
+  
