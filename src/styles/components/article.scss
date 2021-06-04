@@ -315,4 +315,90 @@
     left: 0px;
     height: 2px;
     width: 76%;
-  
+    background: linear-gradient(
+      90deg,
+      var(--text-accent),
+      var(--background-secondary) 76.05%
+    );
+  }
+
+  .custom-quote::after,
+  blockquote::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0px;
+    height: 2px;
+    width: 45%;
+    background: linear-gradient(
+      90deg,
+      var(--text-accent),
+      var(--background-primary) 45%
+    );
+  }
+
+  .custom-quote-svg,
+  .custom-blockquote-svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -0.65rem;
+    left: -1rem;
+    height: 2.3rem;
+    width: 2.3rem;
+    fill: currentColor;
+    stroke: var(--background-secondary);
+    overflow: hidden;
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .custom-blockquote-svg {
+    color: var(--text-accent);
+  }
+
+  .custom-quote.tip .custom-quote-svg {
+    color: var(--custom-quote-tip);
+  }
+
+  .custom-quote.tip {
+    .custom-quote-title {
+      color: var(--custom-quote-tip);
+    }
+    border-left: 3px solid var(--custom-quote-tip) !important;
+  }
+
+  .custom-quote.tip::before {
+    background: linear-gradient(
+      90deg,
+      var(--custom-quote-tip),
+      var(--background-primary)
+    );
+  }
+
+  .custom-quote.tip::after {
+    background: linear-gradient(
+      90deg,
+      var(--custom-quote-tip),
+      var(--background-primary)
+    );
+  }
+
+  .custom-quote.warning .custom-quote-svg {
+    color: var(--custom-quote-warning);
+  }
+
+  .custom-quote.warning {
+    .custom-quote-title {
+      color: var(--custom-quote-warning);
+    }
+    border-left: 3px solid var(--custom-quote-warning) !important;
+  }
+
+  .custom-quote.warning::before {
+    background: linear-gradient(
+      90deg,
+      
