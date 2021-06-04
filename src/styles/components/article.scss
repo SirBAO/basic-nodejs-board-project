@@ -401,4 +401,70 @@
   .custom-quote.warning::before {
     background: linear-gradient(
       90deg,
-      
+      var(--custom-quote-warning),
+      var(--background-primary)
+    );
+  }
+
+  .custom-quote.warning::after {
+    background: linear-gradient(
+      90deg,
+      var(--custom-quote-warning),
+      var(--background-primary)
+    );
+  }
+
+  .custom-quote.danger .custom-quote-svg {
+    color: var(--custom-quote-danger);
+  }
+
+  .custom-quote.danger {
+    .custom-quote-title {
+      color: var(--custom-quote-danger);
+    }
+    border-left: 3px solid var(--custom-quote-danger) !important;
+  }
+
+  .custom-quote.danger::before {
+    background: linear-gradient(
+      90deg,
+      var(--custom-quote-danger),
+      var(--background-primary)
+    );
+  }
+
+  .custom-quote.danger::after {
+    background: linear-gradient(
+      90deg,
+      var(--custom-quote-danger),
+      var(--background-primary)
+    );
+  }
+
+  .custom-details {
+    @apply rounded-xl;
+    padding: 1rem;
+    background: linear-gradient(
+      135deg,
+      var(--background-primary),
+      var(--background-primary) 41.07%,
+      var(--background-secondary) 76.05%,
+      var(--background-secondary)
+    );
+    summary {
+      @apply rounded-lg cursor-pointer transition-all;
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none; /* Non-prefixed version, currently */
+      padding: 0.5rem 1.2rem;
+      background: linear-gradient(
+        135deg,
+        var(--bg-accent-55),
+        transparent 46.07%
+      );
+      opacity: 1;
+      &:hover {
+        
