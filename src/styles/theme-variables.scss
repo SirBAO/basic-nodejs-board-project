@@ -3,4 +3,63 @@
   --gap: 2rem;
   --main-gradient: linear-gradient(
     130deg,
-    #2
+    #24c6dc,
+    #5433ff 41.07%,
+    #ff0099 76.05%
+  );
+  --theme-transition: all 250ms ease;
+}
+
+.theme-light {
+  --background-primary: #f1f3f9;
+  --background-primary-alt: #fafafa;
+  --background-secondary: #ffffff;
+  --background-secondary-alt: #2e3236;
+  --background-trans: rgba(0, 0, 0, 0.15);
+  --text-bright: #000000;
+  --text-normal: #333333;
+  --text-accent: #e93796;
+  --text-sub-accent: #547ce7;
+  --text-faint: #b2b2b2;
+  --text-dim: #858585;
+  --text-title-h1: #333;
+  --text-title-h2: #333;
+  --text-title-h3: #333;
+  --text-title-h4: #333;
+  --text-title-h5: #333;
+  --text-link: #b4b4b4;
+  --text-a: #db4d52;
+  --text-a-hover: #db4d52;
+  --bg-accent-55: rgba(244, 86, 157, 0.55);
+  --bg-sub-accent-55: rgba(13, 185, 215, 0.55);
+  --bg-accent-05: rgba(244, 86, 157, 0.05);
+  --strong-gradient: linear-gradient(
+    62deg,
+    #188bfd 0%,
+    #a03bff 100%
+  ) !important;
+  --gradient-cover: linear-gradient(
+    90deg,
+    hsla(0, 0%, 98%, 0) 0,
+    hsla(0, 0%, 98%, 0.013) 8.1%,
+    hsla(0, 0%, 98%, 0.049) 15.5%,
+    hsla(0, 0%, 98%, 0.104) 22.5%,
+    hsla(0, 0%, 98%, 0.175) 29%,
+    hsla(0, 0%, 98%, 0.259) 35.3%,
+    hsla(0, 0%, 98%, 0.352) 41.2%,
+    hsla(0, 0%, 98%, 0.45) 47.1%,
+    hsla(0, 0%, 98%, 0.55) 52.9%,
+    hsla(0, 0%, 98%, 0.648) 58.8%,
+    hsla(0, 0%, 98%, 0.741) 64.7%,
+    hsla(0, 0%, 98%, 0.825) 71%,
+    hsla(0, 0%, 98%, 0.896) 77.5%,
+    hsla(0, 0%, 98%, 0.951) 84.5%,
+    hsla(0, 0%, 98%, 0.987) 91.9%,
+    var(--background-secondary)
+  );
+  --article-cover: linear-gradient(
+    180deg,
+    hsla(0, 0%, 98%, 0) 0,
+    hsla(0, 0%, 98%, 0.013) 8.1%,
+    hsla(0, 0%, 98%, 0.049) 15.5%,
+    hsla(0, 0%, 98%, 0.104) 22.5%,
