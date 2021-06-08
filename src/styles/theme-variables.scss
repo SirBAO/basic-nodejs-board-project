@@ -244,4 +244,78 @@
 }
 
 .tab {
-  @apply fle
+  @apply flex flex-row flex-wrap bg-ob-deep-800 pl-6 pr-12 mb-8 rounded-2xl shadow-md overflow-y-hidden;
+  height: 3.5rem;
+  transition: height 400ms ease;
+  &.expanded-tab {
+    overflow-y: initial;
+    height: auto;
+  }
+  li {
+    @apply cursor-pointer hover:opacity-50 my-4 mr-3;
+    &.active {
+      @apply shadow-lg text-white;
+      text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+    }
+    span {
+      @apply whitespace-nowrap bg-ob-deep-900 text-center px-3 py-2 rounded-tl-md rounded-bl-md text-sm;
+      &.first-tab {
+        @apply rounded-md px-6;
+      }
+    }
+    b {
+      @apply whitespace-nowrap bg-ob-deep-900 text-ob text-center px-2 py-2 rounded-tr-md rounded-br-md text-sm opacity-70;
+    }
+  }
+}
+
+.tab-expander {
+  @apply stroke-current text-ob-bright absolute right-5 top-5 cursor-pointer;
+  opacity: 0.8;
+  &:hover {
+    opacity: 0.5;
+  }
+  svg {
+    transition: transform 400ms ease;
+  }
+  &.expanded svg {
+    transform: rotate(180deg);
+  }
+}
+
+/** nprogress styles */
+#loading-bar-wrapper #nprogress {
+  pointer-events: none;
+  .bar {
+    background: var(--main-gradient);
+    position: absolute;
+    z-index: 3000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+  }
+  .peg {
+    display: none;
+    position: absolute;
+    right: 0;
+    width: 100px;
+    height: 8px;
+    opacity: 0;
+    box-shadow: none;
+    transform: rotate(3deg) translate(0, -4px);
+  }
+  .spinner {
+    display: block;
+    position: fixed;
+    z-index: 3000;
+    top: 15px;
+    right: 15px;
+  }
+  .spinner-icon {
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+    border-top-color: var(--text-accent);
+    border-left-color: var(--text-accen
