@@ -11,4 +11,43 @@
   "visibility_change": "Welcome back my friend!~",
   "welcome": {
     "5_7": "Good morning! The plan for a day lies in the morning, and a beautiful day is about to begin.",
-    "7_11": "Good morning! H
+    "7_11": "Good morning! How is your day doing? don't sit for too long!",
+    "11_13": "It's noon, Must have being working all morning, and it's lunch time!",
+    "13_17": "It's easy to get sleepy in the afternoon. Have a cup of coffee maybe?",
+    "17_19": "It's evening! The sunset outside the window is beautiful.",
+    "19_21": "Good evening, how are you doing today?",
+    "21_23": [
+      "It's getting late, rest early, good night~",
+      "Take good care of your eyes!"
+    ],
+    "24": "Are you a night owl? Will you able get up tomorrow?"
+  },
+  "referrer": {
+    "self": "Welcome to <span>「[PLACEHOLDER]」</span>",
+    "baidu": "Hello！Friend from Baidu search engine,<br>did you search <span>「[PLACEHOLDER]」</span> to find me？",
+    "so": "Hello！Friend from 360 search engine,<br>did you search <span>「[PLACEHOLDER]」</span> to find me？",
+    "google": "Hello！Friend from Google search engine,<br>enjoy your time reading <span>「[PLACEHOLDER]」</span>",
+    "site": "Hello there, friend from <span>[PLACEHOLDER]</span>",
+    "other": "Thanks for reading <span>「[PLACEHOLDER]」</span>"
+  },
+  "mouseover": [
+    {
+      "selector": "#Aurora-Dia",
+      "text": [
+        "Waaaaaaaa...What are you <span>doing</span>? O.O",
+        "Please be gentle, I am very delicate! O.O",
+        "<span>Sir yes sir!</span> What can I help you with? O.O"
+      ]
+    },
+    {
+      "selector": "[data-menu='Home']",
+      "text": [
+        "Click to go to the <span>home page</span>. ",
+        "Yes, click here to go <span>back home</span>.",
+        "Go take a look at the <span>home page</span>."
+      ]
+    },
+    {
+      "selector": "[data-menu='About']",
+      "text": [
+        "You want to know more ab
