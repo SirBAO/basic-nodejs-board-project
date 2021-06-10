@@ -50,4 +50,56 @@
     {
       "selector": "[data-menu='About']",
       "text": [
-        "You want to know more ab
+        "You want to know more about my <span>master</span>?",
+        "Here hides all the <span>secrets of my master</span>, want to take a look?",
+        "Found my master's <span>secret hideout</span>!"
+      ]
+    },
+    {
+      "selector": "[data-menu='Archives']",
+      "text": [
+        "Here stores all the <span>works</span> my master had done！",
+        "Wanna see my master's <span>library?</span>",
+        "Yes, my masters' <span>ancient histories</span> are all here!"
+      ]
+    },
+    {
+      "selector": "[data-menu='Tags']",
+      "text": [
+        "Click here to look at <span>article tags</span>.",
+        "Tags are used to better <span>categorize</span> your articles."
+      ]
+    },
+    {
+      "selector": "[data-dia='language']",
+      "text": "Master's blog supports multiple <span>languages.</span>"
+    },
+    {
+      "selector": "[data-dia='light-switch']",
+      "text": "You can switch between <span>light</span> and <span>dark</span> mode, click the switch to see the magic!"
+    },
+    {
+      "selector": "[data-dia='author']",
+      "text": [
+        "Here is a short profile of my master.",
+        "Click any of these links can teleport to my master's other worlds."
+      ]
+    },
+    {
+      "selector": "[data-dia='jump-to-comment']",
+      "text": [
+        "Do you want to check out the comments?",
+        "Click here will help you jump right into the comments section."
+      ]
+    }
+  ],
+  "click": [
+    {
+      "selector": "[data-dia='search']",
+      "text": [
+        "Didn't find what you are looking for? Try search it here!",
+        "You can also use <span>ctrl/cmd + k</span> keyboard shortcut to open the search menu."
+      ]
+    },
+    {
+      "selector": "[data-dia=
