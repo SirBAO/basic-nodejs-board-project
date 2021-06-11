@@ -102,4 +102,57 @@
       ]
     },
     {
-      "selector": "[data-dia=
+      "selector": "[data-dia='article-link']",
+      "text": [
+        "Enjoy reading:<span>「{text}」</span>.",
+        "That's a good pick, enjoy time reading this article.",
+        "Hope you can learn something from:<span>「{text}」</span>."
+      ]
+    },
+    {
+      "selector": ".gt-header-textarea",
+      "text": [
+        "Wanna write something?",
+        "Be sure write your comment carefully meow~",
+        "Anything you want to say to the author?",
+        "If you think the article is good, leave a message for the author."
+      ]
+    },
+    {
+      "selector": ".veditor",
+      "text": [
+        "Wanna write something?",
+        "Be sure write your comment carefully meow~",
+        "Anything you want to say to the author?",
+        "If you think the article is good, leave a message for the author."
+      ]
+    }
+  ],
+  "events": [
+    {
+      "date": "01/01",
+      "text": "<span>Happy new year</span>，{year}～"
+    },
+    {
+      "date": "02/14",
+      "text": "It's <span>Valentine's Day</span>，have you found your loved one in {year}?"
+    },
+    {
+      "date": "03/08",
+      "text": "Today is <span>International Women's Day</span>！"
+    },
+    {
+      "date": "04/01",
+      "text": "Tell you a secret, don't trust anyone today, because today is <span>April Fool</span>"
+    },
+    {
+      "date": "05/01",
+      "text": "Today is <span>International Labour Day</span>，have you planned to go travel?"
+    },
+    {
+      "date": "12/20-12/30",
+      "text": "These few days is <span>Christmas</span>，my master must being shopping like crazy!"
+    },
+    {
+      "date": "12/31",
+      "text": "T
