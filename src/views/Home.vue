@@ -51,4 +51,60 @@
             <li v-for="n in 6" :key="n">
               <Article :data="{}" />
             </li>
-       
+          </template>
+
+          <template v-else-if="!themeConfig.theme.feature">
+            <template v-for="(post, key) in posts.data" :key="post.slug">
+              <li v-if="key !== 0">
+                <Article :data="post" />
+              </li>
+            </template>
+          </template>
+
+          <template v-else>
+            <li v-for="post in posts.data" :key="post.slug">
+              <Article :data="post" />
+            </li>
+          </template>
+        </ul>
+
+        <Paginator
+          :pageSize="pagination.pageSize"
+          :pageTotal="pagination.pageTotal"
+          :page="pagination.page"
+          @pageChange="pageChangeHanlder"
+        />
+      </div>
+      <div>
+        <Sidebar>
+          <Profile :author="mainAuthor" />
+          <RecentComment v-if="recentCommentEnable" />
+          <TagBox />
+        </Sidebar>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { computed, defineComponent, onMounted, ref } from 'vue'
+import { Feature, FeatureList } from '@/components/Feature'
+import { Article, HorizontalArticle } from '@/components/ArticleCard'
+import { Title } from '@/components/Title'
+import { Sidebar, TagBox, RecentComment, Profile } from '@/components/Sidebar'
+import { usePostStore } from '@/stores/post'
+import { FeaturePosts, PostList } from '@/models/Post.class'
+import { useAppStore } from '@/stores/app'
+import { useI18n } from 'vue-i18n'
+import { useCategoryStore } from '@/stores/category'
+import Paginator from '@/components/Paginator.vue'
+import { useMetaStore } from '@/stores/meta'
+
+export default defineComponent({
+  name: 'Home',
+  components: {
+    Feature,
+    FeatureList,
+    Article,
+    HorizontalArticle,
+    T
