@@ -170,4 +170,59 @@ export default defineComponent({
     }
 
     const handleTabChange = (slug: string) => {
-      activeTa
+      activeTab.value = slug
+      backToArticleTop()
+      if (slug !== '') {
+        posts.value = new PostList()
+        postStore.fetchPostsByCategory(slug).then(postList => {
+          posts.value = postList
+          pagination.value.pageTotal = postList.total
+        })
+      } else {
+        fetchPostData()
+      }
+    }
+
+    const backToArticleTop = () => {
+      window.scrollTo({
+        top: articleOffset.value
+      })
+    }
+
+    const activeTabStyle = (slug: string) => {
+      if (slug === activeTab.value)
+        return { background: appStore.themeConfig.theme.header_gradient_css }
+      return {}
+    }
+
+    const fetchPostData = async () => {
+      posts.value = new PostList()
+      await postStore.fetchPostsList(pagination.value.page).then(() => {
+        posts.value = postStore.posts
+        pagination.value.pageTotal = postStore.posts.total
+        pagination.value.pageSize = postStore.posts.pageSize
+      })
+    }
+
+    const pageChangeHanlder = async (page: number) => {
+      pagination.value.page = page
+      backToArticleTop()
+      await fetchPostData()
+    }
+
+    return {
+      gradientText: computed(
+        () => appStore.themeConfig.theme.background_gradient_style
+      ),
+      gradientBackground: computed(() => {
+        return { background: appStore.themeConfig.theme.header_gradient_css }
+      }),
+      themeConfig: computed(() => appStore.themeConfig),
+      categories: computed(() => {
+        if (categoryStore.isLoaded && categoryStore.categories.length === 0) {
+          return null
+        }
+        return categoryStore.categories
+      }),
+      mainAuthor: computed(() => {
+        let author = appStore.themeConfig.site.author.toLocaleLowerCa
