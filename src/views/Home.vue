@@ -107,4 +107,67 @@ export default defineComponent({
     FeatureList,
     Article,
     HorizontalArticle,
-    T
+    Title,
+    Sidebar,
+    TagBox,
+    Paginator,
+    RecentComment,
+    Profile
+  },
+  setup() {
+    useMetaStore().setTitle('home')
+    const postStore = usePostStore()
+    const appStore = useAppStore()
+    const categoryStore = useCategoryStore()
+    const { t } = useI18n()
+
+    /** Variables Section */
+
+    const topFeature = ref(new FeaturePosts().top_feature)
+    const featurePosts = ref(new FeaturePosts().features)
+    const posts = ref(new PostList())
+    const expanderClass = ref({
+      'tab-expander': true,
+      expanded: false
+    })
+    const tabClass = ref({
+      tab: true,
+      'expanded-tab': false
+    })
+    const activeTab = ref('')
+    const articleOffset = ref(0)
+    const pagination = ref({
+      pageSize: 12,
+      pageTotal: 0,
+      page: 1
+    })
+
+    /** Function section */
+
+    const fetchData = async () => {
+      await postStore.fetchFeaturePosts().then(() => {
+        topFeature.value = postStore.featurePosts.top_feature
+        featurePosts.value = postStore.featurePosts.features
+      })
+
+      await fetchPostData()
+
+      await categoryStore.fetchCategories()
+
+      const articleListEl = document.getElementById('article-list')
+      // 120 is the height of the header element
+      articleOffset.value =
+        articleListEl && articleListEl instanceof HTMLElement
+          ? articleListEl.offsetTop + 120
+          : 0
+    }
+
+    onMounted(fetchData)
+
+    const expandHandler = () => {
+      expanderClass.value.expanded = !expanderClass.value.expanded
+      tabClass.value['expanded-tab'] = !tabClass.value['expanded-tab']
+    }
+
+    const handleTabChange = (slug: string) => {
+      activeTa
