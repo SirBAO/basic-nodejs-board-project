@@ -29,4 +29,51 @@ export default defineComponent({
   name: 'Page',
   components: { PageContainer, Breadcrumbs, Comment },
   setup() {
-    const art
+    const articleStore = useArticleStore()
+    const appStore = useAppStore()
+    const metaStore = useMetaStore()
+    const pageData = ref(new Page())
+    const route = useRoute()
+    const { t } = useI18n()
+    const pageTitle = ref()
+
+    const fetchArticle = () => {
+      articleStore.fetchArticle(String(route.params.slug)).then(response => {
+        pageData.value = response
+
+        pageTitle.value = pageData.value.title
+
+        updateTitle(appStore.locale)
+      })
+    }
+
+    const updateTitle = (locale: string | undefined) => {
+      const currentLocale = locale === 'cn' ? 'cn' : 'en'
+      const routeInfo =
+        appStore.themeConfig.menu.menus[String(route.params.slug)]
+      pageTitle.value =
+        (routeInfo.i18n && routeInfo.i18n[currentLocale]) || routeInfo.name
+      metaStore.setTitle(pageTitle.value)
+    }
+
+    watch(
+      () => appStore.locale,
+      value => {
+        if (value) {
+          updateTitle(value)
+        }
+      }
+    )
+
+    onBeforeMount(fetchArticle)
+
+    return {
+      pageTitle: computed(() => pageTitle.value),
+      pageData,
+      t
+    }
+  }
+})
+</script>
+
+<style lang="scss" scoped></style>
