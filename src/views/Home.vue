@@ -225,4 +225,33 @@ export default defineComponent({
         return categoryStore.categories
       }),
       mainAuthor: computed(() => {
-        let author = appStore.themeConfig.site.author.toLocaleLowerCa
+        let author = appStore.themeConfig.site.author.toLocaleLowerCase()
+        return author.replace(/[\s]+/g, '-')
+      }),
+      recentCommentEnable: computed(() => {
+        return (
+          (appStore.themeConfig.plugins.gitalk.enable &&
+            appStore.themeConfig.plugins.gitalk.recentComment) ||
+          (!appStore.themeConfig.plugins.gitalk.enable &&
+            appStore.themeConfig.plugins.valine.enable &&
+            appStore.themeConfig.plugins.valine.recentComment)
+        )
+      }),
+      expanderClass,
+      tabClass,
+      expandHandler,
+      handleTabChange,
+      topFeature,
+      featurePosts,
+      posts,
+      activeTabStyle,
+      activeTab,
+      pagination,
+      pageChangeHanlder,
+      t
+    }
+  }
+})
+</script>
+
+<style lang="scss" scoped></style>
