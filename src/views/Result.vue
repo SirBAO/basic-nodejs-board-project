@@ -63,4 +63,67 @@ import {
 } from '@/components/Sidebar'
 import Breadcrumbs from '@/components/Breadcrumbs.vue'
 import Paginator from '@/components/Paginator.vue'
-impo
+import { Article } from '@/components/ArticleCard'
+import { SpecificPostsList } from '@/models/Post.class'
+import { useRoute } from 'vue-router'
+import { usePostStore } from '@/stores/post'
+import { useMetaStore } from '@/stores/meta'
+
+export default defineComponent({
+  name: 'Result',
+  components: {
+    Breadcrumbs,
+    Sidebar,
+    RecentComment,
+    TagBox,
+    Paginator,
+    Article,
+    CategoryBox
+  },
+  setup() {
+    const { t } = useI18n()
+    const route = useRoute()
+    const postStore = usePostStore()
+    const metaStore = useMetaStore()
+    const pageType = ref('search')
+
+    const isFetched = ref(false)
+    const posts = ref(new SpecificPostsList())
+    const pagination = ref({
+      pageTotal: 0,
+      page: 1
+    })
+    const queryKey = 'ob-query-key'
+    let querySlug = ref()
+
+    const initPage = () => {
+      const path = route.path
+      if (path.indexOf('tags') !== -1) {
+        pageType.value = 'menu.tags'
+        fetchPostByTag()
+      } else {
+        pageType.value = 'menu.search'
+      }
+
+      window.scrollTo({
+        top: 0
+      })
+
+      metaStore.setTitle('search')
+    }
+
+    const fetchPostByTag = () => {
+      isFetched.value = false
+      postStore.fetchPostsByTag(querySlug.value).then(response => {
+        isFetched.value = true
+        posts.value = response
+      })
+    }
+
+    const pageChangeHanlder = (toQuery: any = {}) => {
+      querySlug.value = toQuery.slug
+        ? String(toQuery.slug)
+        : localStorage.getItem(queryKey)
+
+      if (querySlug.value && querySlug.value !== undefined) {
+        localStorage.setItem(queryKey, quer
