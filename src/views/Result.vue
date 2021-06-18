@@ -126,4 +126,41 @@ export default defineComponent({
         : localStorage.getItem(queryKey)
 
       if (querySlug.value && querySlug.value !== undefined) {
-        localStorage.setItem(queryKey, quer
+        localStorage.setItem(queryKey, querySlug.value)
+        initPage()
+      }
+    }
+
+    watch(
+      () => route.query,
+      toQuery => {
+        pageChangeHanlder(toQuery)
+      }
+    )
+
+    onBeforeMount(() => {
+      pageChangeHanlder(route.query)
+    })
+
+    onUnmounted(() => {
+      localStorage.removeItem(queryKey)
+    })
+
+    return {
+      isEmpty: computed(() => {
+        return posts.value.data.length === 0 && isFetched.value
+      }),
+      title: computed(() => {
+        return querySlug.value
+      }),
+      posts,
+      pageType,
+      pagination,
+      pageChangeHanlder,
+      t
+    }
+  }
+})
+</script>
+
+<style lang="scss" scoped></style>
