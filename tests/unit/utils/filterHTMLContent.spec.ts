@@ -21,3 +21,19 @@ describe('Utils: filterHTMLContent', () => {
     expect(
       filterHTMLContent(
         'hello ![image](https://abc.com/example.png) <b>world</b> https://abc.com/img.png'
+      )
+    ).toBe('hello [img] world [link]')
+  })
+
+  it('substr content over 28 characters', () => {
+    expect(filterHTMLContent('123456789012345678901234567890')).toBe(
+      '1234567890123456789012345678...'
+    )
+  })
+
+  it('custom substr length', () => {
+    expect(filterHTMLContent('123456789012345678901234567890', 10)).toBe(
+      '1234567890...'
+    )
+  })
+})
