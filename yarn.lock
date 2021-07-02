@@ -392,4 +392,30 @@
     "@babel/helper-plugin-utils" "^7.14.5"
 
 "@babel/plugin-proposal-private-property-in-object@^7.14.5":
-  ve
+  version "7.14.5"
+  resolved "https://registry.npmjs.org/@babel/plugin-proposal-private-property-in-object/-/plugin-proposal-private-property-in-object-7.14.5.tgz#9f65a4d0493a940b4c01f8aa9d3f1894a587f636"
+  integrity sha512-62EyfyA3WA0mZiF2e2IV9mc9Ghwxcg8YTu8BS4Wss4Y3PY725OmS9M0qLORbJwLqFtGh+jiE4wAmocK2CTUK2Q==
+  dependencies:
+    "@babel/helper-annotate-as-pure" "^7.14.5"
+    "@babel/helper-create-class-features-plugin" "^7.14.5"
+    "@babel/helper-plugin-utils" "^7.14.5"
+    "@babel/plugin-syntax-private-property-in-object" "^7.14.5"
+
+"@babel/plugin-proposal-unicode-property-regex@^7.14.5", "@babel/plugin-proposal-unicode-property-regex@^7.4.4":
+  version "7.14.5"
+  resolved "https://registry.npmjs.org/@babel/plugin-proposal-unicode-property-regex/-/plugin-proposal-unicode-property-regex-7.14.5.tgz#0f95ee0e757a5d647f378daa0eca7e93faa8bbe8"
+  integrity sha512-6axIeOU5LnY471KenAB9vI8I5j7NQ2d652hIYwVyRfgaZT5UpiqFKCuVXCDMSrU+3VFafnu2c5m3lrWIlr6A5Q==
+  dependencies:
+    "@babel/helper-create-regexp-features-plugin" "^7.14.5"
+    "@babel/helper-plugin-utils" "^7.14.5"
+
+"@babel/plugin-syntax-async-generators@^7.8.4":
+  version "7.8.4"
+  resolved "https://registry.npmjs.org/@babel/plugin-syntax-async-generators/-/plugin-syntax-async-generators-7.8.4.tgz#a983fb1aeb2ec3f6ed042a210f640e90e786fe0d"
+  integrity sha512-tycmZxkGfZaxhMRbXlPXuVFpdWlXpir2W4AMhSJgRKzk/eDlIXOhb2LHWoLpDF7TEHylV5zNhykX6KAgHJmTNw==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.8.0"
+
+"@babel/plugin-syntax-class-properties@^7.12.13":
+  version "7.12.13"
+  resolved "https://registry.npmjs.org/@babel/plugin-syntax-class-properties/-/plugin-syntax-class-properties-7.12.13.tgz#b5c98727
