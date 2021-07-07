@@ -589,4 +589,33 @@
 "@babel/plugin-transform-duplicate-keys@^7.14.5":
   version "7.14.5"
   resolved "https://registry.npmjs.org/@babel/plugin-transform-duplicate-keys/-/plugin-transform-duplicate-keys-7.14.5.tgz#365a4844881bdf1501e3a9f0270e7f0f91177954"
-  integrity sha512-iJjbI53huKbPDAsJ8EmVmvCKeeq21bAze4fu9GB
+  integrity sha512-iJjbI53huKbPDAsJ8EmVmvCKeeq21bAze4fu9GBQtSLqfvzj2oRuHVx4ZkDwEhg1htQ+5OBZh/Ab0XDf5iBZ7A==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.14.5"
+
+"@babel/plugin-transform-exponentiation-operator@^7.14.5":
+  version "7.14.5"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-exponentiation-operator/-/plugin-transform-exponentiation-operator-7.14.5.tgz#5154b8dd6a3dfe6d90923d61724bd3deeb90b493"
+  integrity sha512-jFazJhMBc9D27o9jDnIE5ZErI0R0m7PbKXVq77FFvqFbzvTMuv8jaAwLZ5PviOLSFttqKIW0/wxNSDbjLk0tYA==
+  dependencies:
+    "@babel/helper-builder-binary-assignment-operator-visitor" "^7.14.5"
+    "@babel/helper-plugin-utils" "^7.14.5"
+
+"@babel/plugin-transform-for-of@^7.14.5":
+  version "7.14.5"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-for-of/-/plugin-transform-for-of-7.14.5.tgz#dae384613de8f77c196a8869cbf602a44f7fc0eb"
+  integrity sha512-CfmqxSUZzBl0rSjpoQSFoR9UEj3HzbGuGNL21/iFTmjb5gFggJp3ph0xR1YBhexmLoKRHzgxuFvty2xdSt6gTA==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.14.5"
+
+"@babel/plugin-transform-function-name@^7.14.5":
+  version "7.14.5"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-function-name/-/plugin-transform-function-name-7.14.5.tgz#e81c65ecb900746d7f31802f6bed1f52d915d6f2"
+  integrity sha512-vbO6kv0fIzZ1GpmGQuvbwwm+O4Cbm2NrPzwlup9+/3fdkuzo1YqOZcXw26+YUJB84Ja7j9yURWposEHLYwxUfQ==
+  dependencies:
+    "@babel/helper-function-name" "^7.14.5"
+    "@babel/helper-plugin-utils" "^7.14.5"
+
+"@babel/plugin-transform-literals@^7.14.5":
+  version "7.14.5"
+  resolved "https://registry.npmjs.org/@babel/plugin-transform-literals/-/plugin-transform-literals-7.14.5.tgz#41d06c7ff5d4d09e
