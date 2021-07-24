@@ -996,4 +996,39 @@
 "@intlify/devtools-if@9.1.6":
   version "9.1.6"
   resolved "https://registry.npmjs.org/@intlify/devtools-if/-/devtools-if-9.1.6.tgz#739b195e430e24fbf8f864ec8a51e243e3347385"
-  integrity sha512
+  integrity sha512-m8Api+kh+BtFa2FZ/JjIdr1ibsGGqBjdKCzWo5BZecEUxBquIeOQZwpokPh/0K5j+/PZleFXkVAMC5mNt+9WdA==
+  dependencies:
+    "@intlify/shared" "9.1.6"
+
+"@intlify/message-compiler@9.1.6":
+  version "9.1.6"
+  resolved "https://registry.npmjs.org/@intlify/message-compiler/-/message-compiler-9.1.6.tgz#e3e99165c1e6ecc496211017799ae59e15b05a18"
+  integrity sha512-DR8645VOrVK6x/8tkaCpHnckMAIcoOgeNS5j0wB12RfZoXYQp7vAXMaOP511KMll2mXCREgIB0ojpajiof7yzQ==
+  dependencies:
+    "@intlify/message-resolver" "9.1.6"
+    "@intlify/shared" "9.1.6"
+    source-map "0.6.1"
+
+"@intlify/message-resolver@9.1.6":
+  version "9.1.6"
+  resolved "https://registry.npmjs.org/@intlify/message-resolver/-/message-resolver-9.1.6.tgz#d7493c9f326d5feb0cd8538a6735b648a91d8f2f"
+  integrity sha512-UUnbawQa5U9sffd5wRIscqtyY1xWlwJbyfwCLPEWLvBhyAnCwPYlvaHGnnO0CSi0fzJTVwlV9DYzobh3agDeMA==
+
+"@intlify/runtime@9.1.6":
+  version "9.1.6"
+  resolved "https://registry.npmjs.org/@intlify/runtime/-/runtime-9.1.6.tgz#bf1548d9034c80eef92b06b240cb347effb41f71"
+  integrity sha512-U1QZ+TPf3kQQvWo4BA2mj3cHAxMRHXNTBhu2u+deh6ubTqXdZ19XGBTMSasrXG6RE+zSio9oM+ndoLja7JGtPg==
+  dependencies:
+    "@intlify/message-compiler" "9.1.6"
+    "@intlify/message-resolver" "9.1.6"
+    "@intlify/shared" "9.1.6"
+
+"@intlify/shared@9.1.6":
+  version "9.1.6"
+  resolved "https://registry.npmjs.org/@intlify/shared/-/shared-9.1.6.tgz#d03c9301898d6ddffe2a54c03e7664174fbcdfd9"
+  integrity sha512-6MtsKulyfZxdD7OuxjaODjj8QWoHCnLFAk4wkWiHqBCa6UCTC0qXjtEeZ1MxpQihvFmmJZauBUu25EvtngW5qQ==
+
+"@intlify/vue-devtools@9.1.6":
+  version "9.1.6"
+  resolved "https://registry.npmjs.org/@intlify/vue-devtools/-/vue-devtools-9.1.6.tgz#88faadf203951a2a10107440fa99b58f4637d40d"
+  integrity sha512-UdNov
