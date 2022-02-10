@@ -6839,4 +6839,52 @@ jest-get-type@^24.9.0:
   resolved "https://registry.npmjs.org/jest-get-type/-/jest-get-type-24.9.0.tgz#1684a0c8a50f2e4901b6644ae861f579eed2ef0e"
   integrity sha512-lUseMzAley4LhIcpSP9Jf+fTrQ4a1yHQwLNeeVa2cEmbCGeoZAtYPOIv8JaxLD/sUpKxetKGP+gsHl8f8TSj8Q==
 
-jest-
+jest-get-type@^26.3.0:
+  version "26.3.0"
+  resolved "https://registry.npmjs.org/jest-get-type/-/jest-get-type-26.3.0.tgz#e97dc3c3f53c2b406ca7afaed4493b1d099199e0"
+  integrity sha512-TpfaviN1R2pQWkIihlfEanwOXK0zcxrKEE4MlU6Tn7keoXdN6/3gK/xl0yEh8DOunn5pOVGKf8hB4R9gVh04ig==
+
+jest-haste-map@^24.9.0:
+  version "24.9.0"
+  resolved "https://registry.npmjs.org/jest-haste-map/-/jest-haste-map-24.9.0.tgz#b38a5d64274934e21fa417ae9a9fbeb77ceaac7d"
+  integrity sha512-kfVFmsuWui2Sj1Rp1AJ4D9HqJwE4uwTlS/vO+eRUaMmd54BFpli2XhMQnPC2k4cHFVbB2Q2C+jtI1AGLgEnCjQ==
+  dependencies:
+    "@jest/types" "^24.9.0"
+    anymatch "^2.0.0"
+    fb-watchman "^2.0.0"
+    graceful-fs "^4.1.15"
+    invariant "^2.2.4"
+    jest-serializer "^24.9.0"
+    jest-util "^24.9.0"
+    jest-worker "^24.9.0"
+    micromatch "^3.1.10"
+    sane "^4.0.3"
+    walker "^1.0.7"
+  optionalDependencies:
+    fsevents "^1.2.7"
+
+jest-jasmine2@^24.9.0:
+  version "24.9.0"
+  resolved "https://registry.npmjs.org/jest-jasmine2/-/jest-jasmine2-24.9.0.tgz#1f7b1bd3242c1774e62acabb3646d96afc3be6a0"
+  integrity sha512-Cq7vkAgaYKp+PsX+2/JbTarrk0DmNhsEtqBXNwUHkdlbrTBLtMJINADf2mf5FkowNsq8evbPc07/qFO0AdKTzw==
+  dependencies:
+    "@babel/traverse" "^7.1.0"
+    "@jest/environment" "^24.9.0"
+    "@jest/test-result" "^24.9.0"
+    "@jest/types" "^24.9.0"
+    chalk "^2.0.1"
+    co "^4.6.0"
+    expect "^24.9.0"
+    is-generator-fn "^2.0.0"
+    jest-each "^24.9.0"
+    jest-matcher-utils "^24.9.0"
+    jest-message-util "^24.9.0"
+    jest-runtime "^24.9.0"
+    jest-snapshot "^24.9.0"
+    jest-util "^24.9.0"
+    pretty-format "^24.9.0"
+    throat "^4.0.0"
+
+jest-leak-detector@^24.9.0:
+  version "24.9.0"
+  resolved "https://registry.npmjs.org/jest-leak
