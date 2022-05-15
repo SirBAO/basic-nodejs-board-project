@@ -9395,4 +9395,41 @@ postcss@^5.2.17:
     supports-color "^3.2.3"
 
 postcss@^6.0.9:
-  version "6.0.
+  version "6.0.23"
+  resolved "https://registry.npmjs.org/postcss/-/postcss-6.0.23.tgz#61c82cc328ac60e677645f979054eb98bc0e3324"
+  integrity sha512-soOk1h6J3VMTZtVeVpv15/Hpdl2cBLX3CAw4TAbkpTJiNPk9YP/zWcD1ND+xEtvyuuvKzbxliTOIyvkSeSJ6ag==
+  dependencies:
+    chalk "^2.4.1"
+    source-map "^0.6.1"
+    supports-color "^5.4.0"
+
+postcss@^7, postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.18, postcss@^7.0.27, postcss@^7.0.32, postcss@^7.0.36, postcss@^7.0.5, postcss@^7.0.6:
+  version "7.0.36"
+  resolved "https://registry.npmjs.org/postcss/-/postcss-7.0.36.tgz#056f8cffa939662a8f5905950c07d5285644dfcb"
+  integrity sha512-BebJSIUMwJHRH0HAQoxN4u1CN86glsrwsW0q7T+/m44eXOUAxSNdHRkNZPYz5vVUbg17hFgOQDE7fZk7li3pZw==
+  dependencies:
+    chalk "^2.4.2"
+    source-map "^0.6.1"
+    supports-color "^6.1.0"
+
+postcss@^8.1.10, postcss@^8.2.1, postcss@^8.2.10:
+  version "8.3.5"
+  resolved "https://registry.npmjs.org/postcss/-/postcss-8.3.5.tgz#982216b113412bc20a86289e91eb994952a5b709"
+  integrity sha512-NxTuJocUhYGsMiMFHDUkmjSKT3EdH4/WbGF6GCi1NDGk+vbcUTun4fpbOqaPtD8IIsztA2ilZm2DhYCuyN58gA==
+  dependencies:
+    colorette "^1.2.2"
+    nanoid "^3.1.23"
+    source-map-js "^0.6.2"
+
+posthtml-parser@^0.2.0, posthtml-parser@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.npmjs.org/posthtml-parser/-/posthtml-parser-0.2.1.tgz#35d530de386740c2ba24ff2eb2faf39ccdf271dd"
+  integrity sha1-NdUw3jhnQMK6JP8usvrznM3ycd0=
+  dependencies:
+    htmlparser2 "^3.8.3"
+    isobject "^2.1.0"
+
+posthtml-rename-id@^1.0:
+  version "1.0.12"
+  resolved "https://registry.npmjs.org/posthtml-rename-id/-/posthtml-rename-id-1.0.12.tgz#cf7f6eb37146bf1afac31e68f18c6cc19ae61433"
+  integrity sha512-UKXf9OF/no8WZo9edRzvuMenb
